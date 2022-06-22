@@ -98,7 +98,33 @@
     filter: saturate(180%);
 }
 
+mat-toolbar{
+    justify-content: space-between;
+    background-color: #232323;
+}
+#navbarList > span{
+    margin-left: 10rem;
+    justify-content: space-around;
+    text-decoration: none;
+    color: #098A9A;
+    cursor: pointer;
+}
+#logo{
+    width: 50px;
+}
+#mobileNav{
+    display: none;
+}
 @media (max-width: 500px) {
+    #logo{
+        width: 25px;
+    }
+    #mobileNav{
+        display: flex;
+    }
+    #desktopNav{
+        display: none;
+    }
     .cardImg {
         border-radius: 1% 1% 0% 0%;
         width: 100%;
@@ -176,3 +202,4 @@
         filter: saturate(180%);
     }
 }
+
