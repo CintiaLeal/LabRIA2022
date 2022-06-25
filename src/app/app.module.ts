@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoticiasComponent } from './Page/Noticias/noticias.component';
@@ -13,6 +13,7 @@ import { RegistrarComponent } from './Page/Registrar/registrar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon'
 import { MatMenuModule } from '@angular/material/menu'
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
     declarations: [
         AppComponent,
@@ -21,6 +22,9 @@ import { MatMenuModule } from '@angular/material/menu'
         RegistrarComponent
     ],
     imports: [
+        HttpClientModule,
+        ReactiveFormsModule,
+        FormsModule,
         BrowserAnimationsModule,
         BrowserModule,
         AppRoutingModule,
