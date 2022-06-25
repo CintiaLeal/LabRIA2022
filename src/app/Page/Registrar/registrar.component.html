@@ -12,28 +12,28 @@
                 </div>
             </div>
             <mat-card class="cardContenido">
-                <form>
+                <form [formGroup]="registrarForm">
                     <div class="centrarinput">
                         <div style="position: relative; z-index: index 2;">
                             <mat-form-field class="example-full-width" appearance="fill">
                                 <mat-label>Username</mat-label>
-                                <input type="username" matInput>
+                                <input type="username" formControlName="username" matInput>
                             </mat-form-field>
                         </div>
                         <div>
                             <mat-form-field class="example-full-width" appearance="fill">
                                 <mat-label>Email</mat-label>
-                                <input type="email" matInput>
+                                <input type="email" formControlName="email" matInput>
                             </mat-form-field>
                         </div>
                         <div>
                             <mat-form-field class="example-full-width" appearance="fill">
                                 <mat-label>Password</mat-label>
-                                <input type="password" matInput>
+                                <input type="password" formControlName="password" matInput>
                             </mat-form-field>
                         </div>
                         <div class="centrarbtn">
-                            <button mat-raised-button class="btnLogin">Registrarse</button>
+                            <button mat-raised-button class="btnLogin" (click)="onRegistrar()">Registrarse</button>
                         </div>
                     </div>
                 </form>

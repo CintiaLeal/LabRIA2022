@@ -1,0 +1,64 @@
+.Principal {
+    height: 60%;
+    width: 50%;
+    margin-top: 5%;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.Centrar {
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+}
+
+.example-card {
+    border: 1px solid rgb(158, 158, 158);
+    height: 600px;
+}
+
+.btnLogin {
+    background-color: #e0e0e0;
+    width: 50%;
+    height: 50px;
+    font-family: Helvetica, sans-serif;
+    font-size: 18px;
+}
+
+.btnLogin:hover {
+    background-color: #4643430c;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.centrarbtn {
+    display: flex;
+    height: 80%;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 500px) {
+    .Principal {
+        height: 100%;
+        width: 100%;
+        margin-top: 20%;
+        flex-direction: column;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+    }
+    .Centrar {
+        width: 60%;
+        height: 500px;
+        margin-top: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
