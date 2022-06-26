@@ -14,12 +14,14 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon'
 import { MatMenuModule } from '@angular/material/menu'
 import { HttpClientModule } from '@angular/common/http';
+import { ContactoComponent } from './Page/Contacto/contacto.component';
 @NgModule({
     declarations: [
         AppComponent,
         NoticiasComponent,
         LoginComponent,
-        RegistrarComponent
+        RegistrarComponent,
+        ContactoComponent
     ],
     imports: [
         HttpClientModule,

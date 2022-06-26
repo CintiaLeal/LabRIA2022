@@ -3,8 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { NoticiasComponent } from './Page/Noticias/noticias.component';
 import { LoginComponent } from './Page/Login/login.component';
 import { RegistrarComponent } from './Page/Registrar/registrar.component';
+import { ContactoComponent } from './Page/Contacto/contacto.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
+  { path: 'contacto', component: ContactoComponent },
   { path: 'noticias', component: NoticiasComponent },
   { path: 'registrar', component: RegistrarComponent }
 
