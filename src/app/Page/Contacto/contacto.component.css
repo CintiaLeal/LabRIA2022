@@ -1,0 +1,54 @@
+.Principal {
+    height: 60%;
+    width: 100%;
+    margin-top: 5%;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.Centrar {
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img {
+    max-width: 120%;
+    max-height: 120%;
+}
+
+p {
+    font-size: 20px;
+}
+
+.icon {
+    font-size: 25px;
+    color: black;
+}
+
+.example-card {
+    border: 1px solid rgb(158, 158, 158);
+    height: 380px;
+}
+
+@media (max-width: 500px) {
+    .Principal {
+        height: 100%;
+        width: 100%;
+        margin-top: 10%;
+        flex-direction: column;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+    }
+    .Centrar {
+        width: 80%;
+        height: 500px;
+        margin-top: 5%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
