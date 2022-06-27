@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatMenuModule } from '@angular/material/menu'
 import { HttpClientModule } from '@angular/common/http';
 import { ContactoComponent } from './Page/Contacto/contacto.component';
+import { MateriaComponent } from './Page/Materia/materia.component';
 
 //import {IvyCarouselModule} from 'angular-responsive-carousel';
 @NgModule({
@@ -23,7 +24,8 @@ import { ContactoComponent } from './Page/Contacto/contacto.component';
         NoticiasComponent,
         LoginComponent,
         RegistrarComponent,
-        ContactoComponent
+        ContactoComponent,
+        MateriaComponent
     ],
     imports: [
         HttpClientModule,
