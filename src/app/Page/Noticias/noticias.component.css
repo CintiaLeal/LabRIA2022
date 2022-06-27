@@ -1,4 +1,4 @@
-.Principal {
+/*.Principal {
     height: 60%;
     width: 60%;
     margin-top: 10%;
@@ -64,5 +64,56 @@ img {
         margin-top: 50%;
         margin-left: auto;
         margin-right: auto;
+    }
+}*/
+
+.Centrartitulo {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    color: black;
+    font-size: 60px;
+}
+
+.rotate {
+    animation: rotation 8s infinite linear;
+    width: 100px;
+    height: 100px;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+.mat-tab-group {
+    margin-bottom: 48px;
+}
+
+.btn {
+    background-color: #e0e0e0;
+    width: 10%;
+    font-family: Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+@media (max-width: 500px) {
+    h1 {
+        color: black;
+        font-size: 40px;
+    }
+    .rotate {
+        animation: rotation 8s infinite linear;
+        width: 60px;
+        height: 60px;
     }
 }

@@ -18,6 +18,7 @@ import { ContactoComponent } from './Page/Contacto/contacto.component';
 import { MateriaComponent } from './Page/Materia/materia.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatStepperModule } from '@angular/material/stepper';
+import {MatTabsModule} from '@angular/material/tabs';
 //import {IvyCarouselModule} from 'angular-responsive-carousel';
 @NgModule({
     declarations: [
@@ -42,7 +43,8 @@ import { MatStepperModule } from '@angular/material/stepper';
         MatToolbarModule,
         MatMenuModule,
         MatExpansionModule,
-        MatStepperModule
+        MatStepperModule,
+        MatTabsModule
         //IvyCarouselModule
     ],
     providers: [],
