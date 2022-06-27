@@ -1,1 +1,82 @@
-<p>materia works!</p>
+<body>
+
+    <div class="Centrartitulo">
+        <img src="/assets/img/logo.jpg" class="rotate" />
+        <h1>MATERIAS </h1>
+    </div>
+    <div class="Principal">
+        <div class="Centrar">
+            <mat-stepper class="orientacion" [linear]="isLinear" #stepper>
+                <mat-step [stepControl]="firstFormGroup">
+                    <form [formGroup]="firstFormGroup">
+                        <ng-template matStepLabel>Nueva Materia</ng-template>
+                        <div>
+                            <div>
+
+                                <mat-label>Ingresa la información para una nueva materia</mat-label>
+                            </div>
+                            <mat-form-field appearance="fill">
+                                <mat-label>ID</mat-label>
+                                <input matInput placeholder="ID de la materia" formControlName="firstCtrl" required>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Nombre</mat-label>
+                                <input matInput placeholder="Nombre de la materia" formControlName="firstCtrl" required>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Descripción</mat-label>
+                                <input matInput placeholder="Descripción de la materia" formControlName="firstCtrl" required>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Creditos Minimos</mat-label>
+                                <input matInput placeholder="Creditos de la materia" formControlName="firstCtrl" required>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <button mat-button (click)="stepper.reset()">Reset</button>
+                            <button mat-button matStepperNext>Listo</button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [stepControl]="secondFormGroup">
+                    <form [formGroup]="secondFormGroup">
+                        <ng-template matStepLabel>Eliminar Materia</ng-template>
+                        <div>
+                            <mat-label>Elimina una materia por su id</mat-label>
+                        </div>
+                        <mat-form-field appearance="fill">
+                            <mat-label>ID</mat-label>
+                            <input matInput formControlName="secondCtrl" required>
+                        </mat-form-field>
+                        <div>
+                            <button mat-button matStepperNext>Eliminar</button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel>Información</ng-template>
+                    <div>
+                        <mat-label>Busca la Información de un materia por su id</mat-label>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="fill">
+                            <mat-label>ID</mat-label>
+                            <input matInput formControlName="secondCtrl" required>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <button mat-button matStepperPrevious>Buscar</button>
+                    </div>
+                </mat-step>
+            </mat-stepper>
+        </div>
+
+    </div>
+
+</body>

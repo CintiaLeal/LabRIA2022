@@ -1,0 +1,59 @@
+.mat-stepper-vertical {
+    margin-top: 8px;
+}
+
+.mat-form-field {
+    margin-top: 12px;
+}
+
+.Centrartitulo {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    color: black;
+    font-size: 60px;
+}
+
+.rotate {
+    animation: rotation 8s infinite linear;
+    width: 100px;
+    height: 100px;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+@media (max-width: 500px) {
+    h1 {
+        color: black;
+        font-size: 40px;
+    }
+    .rotate {
+        animation: rotation 8s infinite linear;
+        width: 60px;
+        height: 60px;
+    }
+    mat-stepper {
+        orientation: "vertical";
+    }
+    .orientacion {
+        orientation: vertical;
+    }
+    .mat-stepper-vertical {
+        margin-left: 2px;
+    }
+    .mat-form-field {
+        margin-right: 3px;
+    }
+}

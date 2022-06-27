@@ -16,7 +16,8 @@ import { MatMenuModule } from '@angular/material/menu'
 import { HttpClientModule } from '@angular/common/http';
 import { ContactoComponent } from './Page/Contacto/contacto.component';
 import { MateriaComponent } from './Page/Materia/materia.component';
-
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatStepperModule } from '@angular/material/stepper';
 //import {IvyCarouselModule} from 'angular-responsive-carousel';
 @NgModule({
     declarations: [
@@ -40,6 +41,8 @@ import { MateriaComponent } from './Page/Materia/materia.component';
         MatButtonModule,
         MatToolbarModule,
         MatMenuModule,
+        MatExpansionModule,
+        MatStepperModule
         //IvyCarouselModule
     ],
     providers: [],
