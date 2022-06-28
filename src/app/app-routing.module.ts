@@ -5,12 +5,14 @@ import { LoginComponent } from './Page/Login/login.component';
 import { RegistrarComponent } from './Page/Registrar/registrar.component';
 import { ContactoComponent } from './Page/Contacto/contacto.component';
 import { MateriaComponent } from './Page/Materia/materia.component';
+import { VernoticiasComponent } from './Page/Vernoticias/vernoticias.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'contacto', component: ContactoComponent },
   { path: 'noticias', component: NoticiasComponent },
   { path: 'registrar', component: RegistrarComponent },
-  { path: 'materia', component: MateriaComponent }
+  { path: 'materia', component: MateriaComponent },
+  { path: 'verNoticias', component: VernoticiasComponent }
 
 ];
 @NgModule({
