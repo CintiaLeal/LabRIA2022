@@ -6,7 +6,10 @@ import { RegistrarComponent } from './Page/Registrar/registrar.component';
 import { ContactoComponent } from './Page/Contacto/contacto.component';
 import { MateriaComponent } from './Page/Materia/materia.component';
 import { VernoticiasComponent } from './Page/Vernoticias/vernoticias.component';
+import { HomeComponent } from './Page/Home/home.component';
+
 const routes: Routes = [
+  { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'contacto', component: ContactoComponent },
   { path: 'noticias', component: NoticiasComponent },

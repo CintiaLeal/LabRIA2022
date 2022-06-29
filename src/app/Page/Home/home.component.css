@@ -1,0 +1,43 @@
+.cardHome {
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  height: 300px;
+  width: 300px;
+  margin: 0 10px 0 10px;
+}
+
+.flecha {
+  cursor: pointer;
+}
+
+.flechaMobile {
+  display: none;
+}
+
+@media (max-width: 500px) {
+  .cardHome {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .flechaMobile {
+    display: flex;
+  }
+
+  .flecha {
+    display: none;
+  }
+
+  .card {
+    height: 150px;
+    width: 75px;
+    margin: 0 10px 0 10px;
+  }
+}

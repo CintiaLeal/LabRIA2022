@@ -18,38 +18,40 @@ import { ContactoComponent } from './Page/Contacto/contacto.component';
 import { MateriaComponent } from './Page/Materia/materia.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatStepperModule } from '@angular/material/stepper';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { VernoticiasComponent } from './Page/Vernoticias/vernoticias.component';
+import { HomeComponent } from './Page/Home/home.component';
 //import {IvyCarouselModule} from 'angular-responsive-carousel';
 @NgModule({
-    declarations: [
-        AppComponent,
-        NoticiasComponent,
-        LoginComponent,
-        RegistrarComponent,
-        ContactoComponent,
-        MateriaComponent,
-        VernoticiasComponent
-    ],
-    imports: [
-        HttpClientModule,
-        ReactiveFormsModule,
-        FormsModule,
-        BrowserAnimationsModule,
-        BrowserModule,
-        AppRoutingModule,
-        MatCardModule,
-        MatIconModule,
-        MatInputModule,
-        MatButtonModule,
-        MatToolbarModule,
-        MatMenuModule,
-        MatExpansionModule,
-        MatStepperModule,
-        MatTabsModule
-        //IvyCarouselModule
-    ],
-    providers: [],
-    bootstrap: [AppComponent]
+  declarations: [
+    HomeComponent,
+    AppComponent,
+    NoticiasComponent,
+    LoginComponent,
+    RegistrarComponent,
+    ContactoComponent,
+    MateriaComponent,
+    VernoticiasComponent
+  ],
+  imports: [
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    AppRoutingModule,
+    MatCardModule,
+    MatIconModule,
+    MatInputModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatExpansionModule,
+    MatStepperModule,
+    MatTabsModule
+    //IvyCarouselModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
