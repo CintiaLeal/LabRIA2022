@@ -21,6 +21,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
 import { VernoticiasComponent } from './Page/Vernoticias/vernoticias.component';
 import { HomeComponent } from './Page/Home/home.component';
+import {MatDialogModule} from '@angular/material/dialog';
 //import {IvyCarouselModule} from 'angular-responsive-carousel';
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { HomeComponent } from './Page/Home/home.component';
     MatMenuModule,
     MatExpansionModule,
     MatStepperModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDialogModule
     //IvyCarouselModule
   ],
   providers: [],

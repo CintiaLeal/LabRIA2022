@@ -6,53 +6,67 @@
     <mat-tab-group mat-align-tabs="start">
         <mat-tab label="Nueva">
             <div>
-                <form class="example-form">
+                <form [formGroup]="nuevaNoticiaForm" class="example-form">
                     <div>
                         <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label>Id</mat-label>
-                            <input matInput>
+                            <input formControlName="id" matInput>
                         </mat-form-field>
                     </div>
                     <div>
                         <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label>Titulo</mat-label>
-                            <input matInput>
+                            <input formControlName="titulo" matInput>
                         </mat-form-field>
                     </div>
                     <div>
                         <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label>Descripcion</mat-label>
-                            <input matInput>
+                            <input formControlName="descripcion" matInput>
                         </mat-form-field>
                     </div>
                     <div>
                         <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label>Imagen</mat-label>
-                            <input matInput>
+                            <input formControlName="imagen" matInput>
                         </mat-form-field>
                     </div>
                     <div>
                         <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Imagen</mat-label>
-                            <input type="date" matInput>
+                            <mat-label>Fecha</mat-label>
+                            <input type="date" formControlName="fechaCaducidad" matInput>
                         </mat-form-field>
                     </div>
+                    <button mat-button (click)="onNueva()">Listo</button>
                 </form>
-                <button mat-button>Listo</button>
             </div>
         </mat-tab>
         <mat-tab label="Eliminar">
-            <div>
-                <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label>Id</mat-label>
-                    <input matInput>
-                </mat-form-field>
-            </div>
-            <div>
-                <button mat-button>Eliminar</button>
-            </div>
+            <form [formGroup]="eliminarNoticiaForm" class="example-form">
+                <div>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Id</mat-label>
+                        <input formControlName="idEliminar" matInput>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <button (click)="onEliminar()" mat-button>Eliminar</button>
+                </div>
+            </form>
         </mat-tab>
-        <mat-tab label="Third">Content 3</mat-tab>
-        <mat-tab label="Third">Content 3</mat-tab>
+        <mat-tab label="Informacíon">
+            <form [formGroup]="verNoticiaForm" class="example-form">
+                <div>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Id</mat-label>
+                        <input formControlName="idBuscar" matInput>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <button (click)="onVer()" mat-button>Buscar</button>
+                </div>
+            </form>
+        </mat-tab>
+
     </mat-tab-group>
 </body>

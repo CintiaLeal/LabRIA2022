@@ -1,11 +1,11 @@
 export class Noticia {
-  public id: number;
+  public id: string;
   public titulo: string;
   public descripcion: string;
   public imagen: string;
-  public fechaCaducidad: Date;
+  public fechaCaducidad: string;
 
-  constructor(id: number, titulo: string, descripcion: string, imagen: string, fechaCaducidad: Date) {
+  constructor(id: string, titulo: string, descripcion: string, imagen: string, fechaCaducidad: string) {
     this.id = id;
     this.titulo = titulo;
     this.descripcion = descripcion;
