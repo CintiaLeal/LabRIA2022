@@ -1,0 +1,53 @@
+<div class="divBack">
+  <mat-tab-group id="matTab" *ngFor="let unidad of unidadesCurriculares">
+    <mat-tab label="{{unidad.nombre}}">
+      <div id="div">
+        <mat-tab-group id="all">
+          <mat-tab label="descripcion">
+            {{unidad.descripcion}}
+          </mat-tab>
+
+          <mat-tab label="Creditos">
+            {{unidad.creditos}}
+          </mat-tab>
+
+          <mat-tab label="documento">
+            {{unidad.documento}}
+          </mat-tab>
+
+          <mat-tab label="Semestre">
+            {{unidad.semestre}}
+          </mat-tab>
+
+          <!-- <mat-tab label="Materia">
+                      Id: {{unidad.materia.id}}
+                      Nombre: {{unidad.materia.nombre}}
+                      Descripcion: {{unidad.materia.descripcion}
+                      Creditos minimos: {{unidad.materia.creditosMinimos}}
+                  </mat-tab> -->
+
+          <mat-tab label="Previas" *ngFor="let previa of unidad.previas">
+            <mat-tab-group id="all">
+              <!-- <mat-tab label="{{previa.unidadCurricular}}">
+                              Id: {{previa.id}}
+                              UnidadCurricular: {{previa.unidadCurricular}}
+                              Previa: {{previa.previa}}
+                              Tipo previa: {{previa.tipoPrevia}}
+                          </mat-tab> -->
+            </mat-tab-group>
+
+          </mat-tab>
+
+
+
+          <!-- <mat-tab label="Horas semestrales">
+                      {{unidad.horas}}
+                  </mat-tab> -->
+          <!-- <mat-tab label="Materia">
+                      {{unidad.materia}}
+                  </mat-tab> -->
+        </mat-tab-group>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
