@@ -21,12 +21,13 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
 import { VernoticiasComponent } from './Page/Vernoticias/vernoticias.component';
 import { HomeComponent } from './Page/Home/home.component';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatChipsModule } from '@angular/material/chips';
 import { UnidadcurricularadminComponent } from './Page/Unidadcurricularadmin/unidadcurricularadmin.component';
 import { MateriasuserComponent } from './Page/Materiasuser/materiasuser.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { UnidadCurricularUsuarioComponent } from './Page/unidad-curricular-usuario/unidad-curricular-usuario.component';
 //import {IvyCarouselModule} from 'angular-responsive-carousel';
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {MatSelectModule} from '@angular/material/select';
     MateriaComponent,
     VernoticiasComponent,
     UnidadcurricularadminComponent,
-    MateriasuserComponent
+    MateriasuserComponent,
+    UnidadCurricularUsuarioComponent
   ],
   imports: [
     HttpClientModule,
@@ -60,7 +62,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatDialogModule,
     MatChipsModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
     //IvyCarouselModule
   ],
   providers: [],

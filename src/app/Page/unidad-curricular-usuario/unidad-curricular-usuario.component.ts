@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UnidadesCurriculares } from 'src/app/modelos/unidadesCurriculates';
+import { UnidadesCurriculares } from 'src/app/modelos/unidadesCurriculares';
 import { UnidadesCurricularesService } from 'src/app/servicios/unidades.service';
 
 @Component({
