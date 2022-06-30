@@ -15,7 +15,7 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   //login 
-  loginByEmail(form: LoginI): Observable<ResponseI> {
+  loginByEmail(form: LoginI) {
     console.log(form)
     let userdata: LoginI = {
       username: form.username,
@@ -23,7 +23,7 @@ export class ApiService {
     }
     console.log(userdata);
     let direccion = this.url + "/Authenticate/login";
-    return this.http.post<ResponseI>(direccion, form);
+    return this.http.post<any>(direccion, form);
   }
   //registrar
   registrar(form: UsuarioI): Observable<ResponseI> {
@@ -34,7 +34,7 @@ export class ApiService {
     }
     console.log(userdata);
     let direccion = this.url + "/Authenticate/register-admin";
-    return this.http.post<ResponseI>(direccion, form);
+    return this.http.post<any>(direccion, form); //aca arregle mal registari en lugar de any
   }
 
 }

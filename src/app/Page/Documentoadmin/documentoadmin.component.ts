@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
+import { DocumentosService } from 'src/app/servicios/documentos.service';
+import { Documento } from 'src/app/modelos/documentos';
+
+
 interface Tipo {
   value: string;
   viewValue: string;
@@ -28,6 +32,9 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./documentoadmin.component.css']
 })
 export class DocumentoadminComponent  {
+  public documentosIF:Documento[] =[];
+  public documentosOL:Documento[] =[];
+  public documentosDI:Documento[] =[];
   tipos: Tipo[] = [
     {value: '0', viewValue: 'INFORMACION_CARRERA'},
     {value: '1', viewValue: 'OPORTUNIDADES_LABORALES'},
@@ -41,9 +48,21 @@ export class DocumentoadminComponent  {
   });
   isLinear = false;
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder,private service:DocumentosService) { }
 
   ngOnInit(): void {
+    this.service.getDocumentoIC().subscribe({
+      next: value => this.documentosIF = value,
+      error: err => { alert('Error al cargar los documentos: ' + err) }
+    });
+    this.service.getDocumentoOL().subscribe({
+      next: value => this.documentosOL = value,
+      error: err => { alert('Error al cargar los documentos: ' + err) }
+    });
+    this.service.getDocumentoDI().subscribe({
+      next: value => this.documentosDI = value,
+      error: err => { alert('Error al cargar los documentos: ' + err) }
+    });
   }
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;

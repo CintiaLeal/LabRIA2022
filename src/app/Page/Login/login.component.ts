@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/servicios/login.service';
 import { LoginI } from '../../modelos/login.interface';
 
@@ -20,7 +21,8 @@ loginForm = new FormGroup({
   username: new FormControl('',Validators.required),
   password: new FormControl('',Validators.required)
 });
-  constructor(private api: ApiService) { }
+ 
+  constructor(private api: ApiService,private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -34,7 +36,9 @@ loginForm = new FormGroup({
     console.log();
     console.log(this.loginForm.value.username);
     this.api.loginByEmail(x).subscribe(data => {
+      localStorage.setItem("token",data.token)
       console.log(data);
+      this.router.navigate(['/']);
     });
   }
 

@@ -13,7 +13,7 @@ import { RegistrarComponent } from './Page/Registrar/registrar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon'
 import { MatMenuModule } from '@angular/material/menu'
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ContactoComponent } from './Page/Contacto/contacto.component';
 import { MateriaComponent } from './Page/Materia/materia.component';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -31,6 +31,7 @@ import { UnidadCurricularUsuarioComponent } from './Page/unidad-curricular-usuar
 import { DocumentoadminComponent } from './Page/Documentoadmin/documentoadmin.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTableModule} from '@angular/material/table';
+import { InterceptorService } from './interceptores/interceptor.service';
 //import {IvyCarouselModule} from 'angular-responsive-carousel';
 @NgModule({
   declarations: [
@@ -71,7 +72,11 @@ import {MatTableModule} from '@angular/material/table';
     MatTableModule
     //IvyCarouselModule
   ],
-  providers: [],
+  providers: [ {
+    provide: HTTP_INTERCEPTORS,
+    useClass: InterceptorService,
+    multi: true
+  } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -65,38 +65,30 @@
                 </mat-step>
                 <mat-step>
                     <ng-template matStepLabel>Desactivar</ng-template>
-
                     <div>
                         <mat-tab-group>
                             <mat-tab label="INFORMACION CARRERA">
-                                <div>
-                                    <p>Nombre:</p>
-                                    <p>Fecha:</p>
-                                    <mat-checkbox class="example-margin" [(ngModel)]="checked">Desactivar</mat-checkbox>
-                                    <button mat-button matStepperPrevious>Aplicar</button>
+                                <div *ngFor="let x of documentosIF">
+                                    <p>Id: {{x.id}}</p>
+                                    <p>Título: {{x.titulo}}</p>
+                                    <button mat-button matStepperPrevious>Desactivar</button>
                                 </div>
-
                             </mat-tab>
                             <mat-tab label="OPORTUNIDADES LABORALES">
-                                <div>
-                                    <p>Nombre:</p>
-                                    <p>Fecha:</p>
-                                    <mat-checkbox class="example-margin" [(ngModel)]="checked">Desactivar</mat-checkbox>
-                                    <button mat-button matStepperPrevious>Aplicar</button>
+                                <div *ngFor="let x of documentosOL">
+                                    <p>Id: {{x.id}}</p>
+                                    <p>Título: {{x.titulo}}</p>
+                                    <button mat-button matStepperPrevious>Desactivar</button>
                                 </div>
                             </mat-tab>
                             <mat-tab label="DATOS DE INTERES">
-                                <div>
-                                    <p>Nombre:</p>
-                                    <p>Fecha:</p>
-                                    <mat-checkbox class="example-margin" [(ngModel)]="checked">Desactivar</mat-checkbox>
-                                    <button mat-button matStepperPrevious>Aplicar</button>
+                                <div *ngFor="let x of documentosDI">
+                                    <p>Id: {{x.id}}</p>
+                                    <p>Título: {{x.titulo}}</p>
+                                    <button mat-button matStepperPrevious>Desactivar</button>
                                 </div>
                             </mat-tab>
                         </mat-tab-group>
-                    </div>
-                    <div>
-
                     </div>
                 </mat-step>
             </mat-stepper>
