@@ -1,12 +1,12 @@
 <body>
     <div class="Centrartitulo">
         <img src="/assets/img/logo.jpg" class="rotate" />
-        <h1>NOTICIAS</h1>
+        <h1>UNIDADES CURRICULARES</h1>
     </div>
     <mat-tab-group mat-align-tabs="start">
         <mat-tab label="Nueva">
             <div>
-                <form [formGroup]="nuevaNoticiaForm" class="example-form">
+                <form class="example-form">
                     <div>
                         <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label>Id</mat-label>
@@ -15,8 +15,8 @@
                     </div>
                     <div>
                         <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Titulo</mat-label>
-                            <input formControlName="titulo" matInput>
+                            <mat-label>Nombre</mat-label>
+                            <input formControlName="nombre" matInput>
                         </mat-form-field>
                     </div>
                     <div>
@@ -27,22 +27,36 @@
                     </div>
                     <div>
                         <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Imagen</mat-label>
-                            <input formControlName="imagen" matInput>
+                            <mat-label>Creditos</mat-label>
+                            <input formControlName="creditos" matInput>
                         </mat-form-field>
                     </div>
                     <div>
                         <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Fecha</mat-label>
-                            <input type="date" formControlName="fechaCaducidad" matInput>
+                            <mat-label>Documento</mat-label>
+                            <input formControlName="documento" matInput>
                         </mat-form-field>
                     </div>
-                    <button mat-button (click)="onNueva()">Listo</button>
+                    <div>
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Semestre</mat-label>
+                            <input formControlName="semestre" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Seleccione la Materia</mat-label>
+                            <mat-select>
+                                <mat-option value="option">Option</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <button mat-button>Listo</button>
                 </form>
             </div>
         </mat-tab>
         <mat-tab label="Eliminar">
-            <form [formGroup]="eliminarNoticiaForm" class="example-form">
+            <form class="example-form">
                 <div>
                     <mat-form-field class="example-full-width" appearance="fill">
                         <mat-label>Id</mat-label>
@@ -50,12 +64,13 @@
                     </mat-form-field>
                 </div>
                 <div>
-                    <button (click)="onEliminar()" mat-button>Eliminar</button>
+                    <button mat-button>Eliminar</button>
+
                 </div>
             </form>
         </mat-tab>
         <mat-tab label="Informacíon">
-            <form [formGroup]="verNoticiaForm" class="example-form">
+            <form class="example-form">
                 <div>
                     <mat-form-field class="example-full-width" appearance="fill">
                         <mat-label>Id</mat-label>
@@ -63,7 +78,7 @@
                     </mat-form-field>
                 </div>
                 <div>
-                    <button (click)="onVer()" mat-button>Buscar</button>
+                    <button mat-button (click)="openDialog('0ms', '0ms')">Buscar</button>
 
                 </div>
             </form>

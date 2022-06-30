@@ -22,6 +22,11 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { VernoticiasComponent } from './Page/Vernoticias/vernoticias.component';
 import { HomeComponent } from './Page/Home/home.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatChipsModule} from '@angular/material/chips';
+import { UnidadcurricularadminComponent } from './Page/Unidadcurricularadmin/unidadcurricularadmin.component';
+import { MateriasuserComponent } from './Page/Materiasuser/materiasuser.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 //import {IvyCarouselModule} from 'angular-responsive-carousel';
 @NgModule({
   declarations: [
@@ -32,7 +37,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     RegistrarComponent,
     ContactoComponent,
     MateriaComponent,
-    VernoticiasComponent
+    VernoticiasComponent,
+    UnidadcurricularadminComponent,
+    MateriasuserComponent
   ],
   imports: [
     HttpClientModule,
@@ -50,7 +57,10 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatExpansionModule,
     MatStepperModule,
     MatTabsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatChipsModule,
+    MatFormFieldModule,
+    MatSelectModule
     //IvyCarouselModule
   ],
   providers: [],

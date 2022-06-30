@@ -7,7 +7,7 @@ import { ContactoComponent } from './Page/Contacto/contacto.component';
 import { MateriaComponent } from './Page/Materia/materia.component';
 import { VernoticiasComponent } from './Page/Vernoticias/vernoticias.component';
 import { HomeComponent } from './Page/Home/home.component';
-
+import { UnidadcurricularadminComponent  } from './Page/Unidadcurricularadmin/unidadcurricularadmin.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
@@ -15,9 +15,10 @@ const routes: Routes = [
   { path: 'noticias', component: NoticiasComponent },
   { path: 'registrar', component: RegistrarComponent },
   { path: 'materia', component: MateriaComponent },
-  { path: 'verNoticias', component: VernoticiasComponent }
-
+  { path: 'verNoticias', component: VernoticiasComponent },
+  { path: 'unidadcurricularadmin', component: UnidadcurricularadminComponent }
 ];
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

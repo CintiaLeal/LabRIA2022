@@ -24,6 +24,7 @@ export class NoticiasService {
 
   //nuevaNoticia
   //https://ria2022.test.softtero.com/api/Noticias
+
   nuevaNoticia(form:Noticia): Observable<ResponseI>{
     let noticiaData: Noticia ={
       id: form.id,
@@ -32,7 +33,7 @@ export class NoticiasService {
       imagen: form.imagen,
       fechaCaducidad: form.fechaCaducidad
     }
-   
+
     let direccion = this.url + "/Noticias";
     return this.http.post<ResponseI>(direccion, form);
   }
@@ -41,11 +42,11 @@ export class NoticiasService {
     console.log(x);
     let direccion = this.url + "/Noticias/" + x.value;
     return this.http.delete(direccion);
-   
   }
+  
   verNoticia(x: any): Observable<Noticia>{
     let a = this.url + "/Noticias/" + x;
     return this.http.get<Noticia>(a);
-    
   }
+
 }

@@ -57,6 +57,5 @@ export class NoticiasComponent implements OnInit {
     console.log(x);
 
   }
-
- 
 }
+
