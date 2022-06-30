@@ -28,6 +28,9 @@ import { MateriasuserComponent } from './Page/Materiasuser/materiasuser.componen
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { UnidadCurricularUsuarioComponent } from './Page/unidad-curricular-usuario/unidad-curricular-usuario.component';
+import { DocumentoadminComponent } from './Page/Documentoadmin/documentoadmin.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatTableModule} from '@angular/material/table';
 //import {IvyCarouselModule} from 'angular-responsive-carousel';
 @NgModule({
   declarations: [
@@ -41,7 +44,8 @@ import { UnidadCurricularUsuarioComponent } from './Page/unidad-curricular-usuar
     VernoticiasComponent,
     UnidadcurricularadminComponent,
     MateriasuserComponent,
-    UnidadCurricularUsuarioComponent
+    UnidadCurricularUsuarioComponent,
+    DocumentoadminComponent
   ],
   imports: [
     HttpClientModule,
@@ -63,6 +67,8 @@ import { UnidadCurricularUsuarioComponent } from './Page/unidad-curricular-usuar
     MatChipsModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatCheckboxModule,
+    MatTableModule
     //IvyCarouselModule
   ],
   providers: [],
