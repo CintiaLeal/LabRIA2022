@@ -8,6 +8,7 @@ import { MateriaComponent } from './Page/Materia/materia.component';
 import { VernoticiasComponent } from './Page/Vernoticias/vernoticias.component';
 import { HomeComponent } from './Page/Home/home.component';
 import { UnidadcurricularadminComponent  } from './Page/Unidadcurricularadmin/unidadcurricularadmin.component';
+import {MateriasuserComponent  } from './Page/Materiasuser/materiasuser.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'registrar', component: RegistrarComponent },
   { path: 'materia', component: MateriaComponent },
   { path: 'verNoticias', component: VernoticiasComponent },
-  { path: 'unidadcurricularadmin', component: UnidadcurricularadminComponent }
+  { path: 'unidadcurricularadmin', component: UnidadcurricularadminComponent },
+  { path: 'materiasuser', component: MateriasuserComponent }
 ];
 
 @NgModule({

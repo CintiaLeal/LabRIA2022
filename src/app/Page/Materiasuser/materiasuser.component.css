@@ -1,0 +1,16 @@
+.divImg {
+    height: 150px;
+    background-image: url("src/assets/img/nueva2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: #cccccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    color: black;
+    font-size: 60px;
+}

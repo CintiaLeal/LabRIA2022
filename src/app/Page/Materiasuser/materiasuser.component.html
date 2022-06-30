@@ -1,1 +1,25 @@
-<p>materiasuser works!</p>
+<body>
+    <div class="divImg">
+        <h1>MATERIAS</h1>
+    </div>
+    <mat-accordion>
+
+        <mat-expansion-panel *ngFor="let x of materias" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{x.nombre}}
+                </mat-panel-title>
+                <mat-panel-description>
+                    Ver Informacíon de la Materia {{panelOpenState ? 'open' : 'closed'}}
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>ID: {{x.id}}</p>
+            <p>Nombre:{{x.nombre}} </p>
+            <p>Descripción: {{x.descripcion}}</p>
+            <p>Creditos Minimos:{{x.creditosMinimos}} </p>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <div>
+
+    </div>
+</body>
