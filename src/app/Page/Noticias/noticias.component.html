@@ -5,14 +5,9 @@
     </div>
     <mat-tab-group mat-align-tabs="start">
         <mat-tab label="Nueva">
-            <div>
+            <div class="Centrardiv">
                 <form [formGroup]="nuevaNoticiaForm" class="example-form">
-                    <div>
-                        <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Id</mat-label>
-                            <input formControlName="id" matInput>
-                        </mat-form-field>
-                    </div>
+
                     <div>
                         <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label>Titulo</mat-label>
@@ -26,10 +21,10 @@
                         </mat-form-field>
                     </div>
                     <div>
-                        <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Imagen</mat-label>
-                            <input formControlName="imagen" matInput>
-                        </mat-form-field>
+
+                        <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+                        <input hidden (change)="onFileSelected($event)" #fileInput type="file" formControlName="imagen">
+                        <span class="file-name">{{selectedFile?.name}}</span>
                     </div>
                     <div>
                         <mat-form-field class="example-full-width" appearance="fill">
@@ -37,36 +32,65 @@
                             <input type="date" formControlName="fechaCaducidad" matInput>
                         </mat-form-field>
                     </div>
-                    <button mat-button (click)="onNueva()">Listo</button>
+                    <button mat-raised-button (click)="onNueva()">Listo</button>
                 </form>
             </div>
         </mat-tab>
         <mat-tab label="Eliminar">
-            <form [formGroup]="eliminarNoticiaForm" class="example-form">
-                <div>
-                    <mat-form-field class="example-full-width" appearance="fill">
-                        <mat-label>Id</mat-label>
-                        <input formControlName="idEliminar" matInput>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <button (click)="onEliminar()" mat-button>Eliminar</button>
-                </div>
-            </form>
-        </mat-tab>
-        <mat-tab label="Informacíon">
-            <form [formGroup]="verNoticiaForm" class="example-form">
-                <div>
-                    <mat-form-field class="example-full-width" appearance="fill">
-                        <mat-label>Id</mat-label>
-                        <input formControlName="idBuscar" matInput>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <button (click)="onVer()" mat-button>Buscar</button>
+            <div>
+                <div *ngFor="let x of noticias">
+                    <div>
+                        <mat-accordion>
+                            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <h2>{{x.titulo}}</h2>
+                                    </mat-panel-title>
+                                    <mat-panel-description>
+                                        Ver {{panelOpenState ? '-' : '+'}}
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <div style="width: 50%;">
+                                    <p>ID NOTICIA: {{x.id}}</p>
+                                    <img mat-card-image src={{x.imagen}}>
+                                </div>
+                                <div style="width: 50%;">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Título</mat-label>
+                                        <input value={{x.titulo}} formControlName="titulo" matInput>
+                                    </mat-form-field>
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Descripción</mat-label>
+                                        <input value={{x.descripcion}} formControlName="descripcion" matInput>
+                                    </mat-form-field>
+                                </div>
+                                <button (click)="eliminarNoticia(x.id)" mat-icon-button color="warn">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                                <button mat-icon-button color="black">
+                                    <mat-icon>editar</mat-icon>
+                                </button>
 
+                            </mat-expansion-panel>
+                        </mat-accordion>
+
+
+
+                    </div>
                 </div>
-            </form>
+                <div (click)="siguientePag()" class="flecha">
+                    <mat-icon>arrow_forward_ios</mat-icon>
+                </div>
+            </div>
+            <div>
+                <div (click)="anteriorPag()" class="flechaMobile">
+                    <mat-icon>arrow_back_ios</mat-icon>
+                </div>
+                <div>
+                    {{page}} - {{cantidadPag}}
+                </div>
+
+            </div>
         </mat-tab>
 
     </mat-tab-group>

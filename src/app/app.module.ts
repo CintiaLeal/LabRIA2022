@@ -32,6 +32,7 @@ import { DocumentoadminComponent } from './Page/Documentoadmin/documentoadmin.co
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTableModule} from '@angular/material/table';
 import { InterceptorService } from './interceptores/interceptor.service';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 //import {IvyCarouselModule} from 'angular-responsive-carousel';
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { InterceptorService } from './interceptores/interceptor.service';
     MatFormFieldModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatTableModule
+    MatTableModule,
+    MatSnackBarModule
     //IvyCarouselModule
   ],
   providers: [ {

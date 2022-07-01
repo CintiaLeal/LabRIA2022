@@ -8,7 +8,7 @@ import { ResponseI } from '../modelos/response.interface';
   providedIn: 'root'
 })
 export class NoticiasService {
-  url: string = "https://ria2022.test.softtero.com/api";
+  url: string = "https://gr1-ria2022.test.softtero.com/api";
   constructor(private http: HttpClient) { }
 
   getNoticias() {
@@ -23,7 +23,7 @@ export class NoticiasService {
   }
 
   //nuevaNoticia
-  //https://ria2022.test.softtero.com/api/Noticias
+ 
 
   nuevaNoticia(form:Noticia): Observable<ResponseI>{
     let noticiaData: Noticia ={
@@ -37,11 +37,13 @@ export class NoticiasService {
     let direccion = this.url + "/Noticias";
     return this.http.post<ResponseI>(direccion, form);
   }
+
   eliminarNoticia(x: any){
     console.log("llega a el servicio");
     console.log(x);
-    let direccion = this.url + "/Noticias/" + x.value;
-    return this.http.delete(direccion);
+    let direccion = this.url + "/Noticias/" + x;
+    console.log(direccion);
+    return this.http.delete<any>(direccion);
   }
   
   verNoticia(x: any): Observable<Noticia>{

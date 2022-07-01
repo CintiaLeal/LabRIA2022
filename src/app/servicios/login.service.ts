@@ -11,7 +11,7 @@ import { UsuarioI } from "../modelos/usuario.interface";
   providedIn: 'root'
 })
 export class ApiService {
-  url: string = "https://ria2022.test.softtero.com/api";
+  url: string = "https://gr1-ria2022.test.softtero.com/api";
   constructor(private http: HttpClient) { }
 
   //login 
