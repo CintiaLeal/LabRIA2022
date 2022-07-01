@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
   getNoticias(offset: number, limit: number) {
     this.api.getNoticiasPag(offset, limit).subscribe(data => {
       this.noticias = data.list;
-      this.cantidadPag = Math.trunc(data.size / this.offset);
+      this.cantidadPag = Math.trunc(data.size / this.offset) > 0 ? Math.trunc(data.size / this.offset) : 1;
     });
   }
 

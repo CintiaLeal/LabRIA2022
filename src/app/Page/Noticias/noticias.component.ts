@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NoticiasService } from 'src/app/servicios/noticias.service';
 import { Noticia } from 'src/app/modelos/noticia';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable, subscribeOn, Subscriber } from 'rxjs';
 @Component({
   selector: 'app-noticias',
   templateUrl: './noticias.component.html',
@@ -10,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 
 export class NoticiasComponent implements OnInit {
-  
+
   //Desplegable
   panelOpenState = false;
 
@@ -20,20 +21,20 @@ export class NoticiasComponent implements OnInit {
   public page: number;
   public noticias: Noticia[];
   public cantidadPag: number = 1;
-
+  public base64Image: any;
   editarNoticiaForm = new FormGroup({
-    titulo: new FormControl('',Validators.required),
-    descripcion: new FormControl('',Validators.required)
-  }); 
+    titulo: new FormControl('', Validators.required),
+    descripcion: new FormControl('', Validators.required)
+  });
   nuevaNoticiaForm = new FormGroup({
-    id: new FormControl('',Validators.required),
-    titulo: new FormControl('',Validators.required),
-    descripcion: new FormControl('',Validators.required),
-    imagen: new FormControl('',Validators.required),
-    fechaCaducidad: new FormControl('',Validators.required)
+    id: new FormControl('', Validators.required),
+    titulo: new FormControl('', Validators.required),
+    descripcion: new FormControl('', Validators.required),
+    imagen: new FormControl('', Validators.required),
+    fechaCaducidad: new FormControl('', Validators.required)
   });
 
-  constructor(private api: NoticiasService,private alerta: MatSnackBar) { 
+  constructor(private api: NoticiasService, private alerta: MatSnackBar) {
     this.limit = 0;
     this.page = 0;
     this.offset = 0;
@@ -74,57 +75,81 @@ export class NoticiasComponent implements OnInit {
 
   //type file
   onFileSelected(event: any): void {
-      this.selectedFile = event.target.files[0] ?? null;
+    this.selectedFile = event.target.files[0] ?? null;
   }
-  exampleFlag=false; // set it to false initially so box is not disabled
+  exampleFlag = false; // set it to false initially so box is not disabled
 
   readonly = null;
 
   //*funcion eliminar*
-  eliminarNoticia(x:any){
+  eliminarNoticia(x: any) {
     this.ngOnInit();
     this.api.eliminarNoticia(x).subscribe(data => {
       console.log(data);
     });
-    this.alerta.open("Eliminado con éxito","OK!");
-    
+    this.alerta.open("Eliminado con éxito", "OK!");
+
     this.ngOnInit();
   }
 
   //*funcion editar* 
-  editarNoticia(Noticia:any ){
-    let x: Noticia={
+  editarNoticia(Noticia: any) {
+    let x: Noticia = {
       id: Noticia.id,
-      titulo: this.editarNoticiaForm.controls["titulo"].value  ? this.editarNoticiaForm.controls["titulo"].value : " ",
-      descripcion: this.editarNoticiaForm.controls["descripcion"].value  ? this.editarNoticiaForm.controls["descripcion"].value : " ",
+      titulo: this.editarNoticiaForm.controls["titulo"].value ? this.editarNoticiaForm.controls["titulo"].value : " ",
+      descripcion: this.editarNoticiaForm.controls["descripcion"].value ? this.editarNoticiaForm.controls["descripcion"].value : " ",
       imagen: Noticia.img,
       fechaCaducidad: Noticia.fechaCaducidad,
     }
     this.api.editarNoticia(x).subscribe(data => {
       console.log(data);
     });
-   
-    this.alerta.open("Eliminado con éxito","OK!");
+
+    this.alerta.open("Eliminado con éxito", "OK!");
 
   }
 
   //*funcion nueva*
   onNueva() {
-    console.log("Llega a la funcion");
-    let x: Noticia={
+    this.convertToBase64(this.selectedFile)
+    console.log(this.base64Image)
+    let x: Noticia = {
       id: "0",
-      titulo: this.nuevaNoticiaForm.controls["titulo"].value  ? this.nuevaNoticiaForm.controls["titulo"].value : " ",
-      descripcion: this.nuevaNoticiaForm.controls["descripcion"].value  ? this.nuevaNoticiaForm.controls["descripcion"].value : " ",
-      imagen: this.nuevaNoticiaForm.controls["imagen"].value  ? this.nuevaNoticiaForm.controls["imagen"].value : " ",
-      fechaCaducidad: this.nuevaNoticiaForm.controls["fechaCaducidad"].value  ? this.nuevaNoticiaForm.controls["fechaCaducidad"].value : "",
+      titulo: this.nuevaNoticiaForm.controls["titulo"].value ? this.nuevaNoticiaForm.controls["titulo"].value : " ",
+      descripcion: this.nuevaNoticiaForm.controls["descripcion"].value ? this.nuevaNoticiaForm.controls["descripcion"].value : " ",
+      imagen: this.base64Image ? this.base64Image : " ",
+      fechaCaducidad: this.nuevaNoticiaForm.controls["fechaCaducidad"].value ? this.nuevaNoticiaForm.controls["fechaCaducidad"].value : "",
     }
     console.log(x);
-   
+
     this.api.nuevaNoticia(x).subscribe(data => {
       console.log(data);
     });
-    this.alerta.open("Creada con éxito","OK!");
+    this.alerta.open("Creada con éxito", "OK!");
     this.ngOnInit();
-  } 
+  }
+
+  convertToBase64(file: File) {
+    const observable = new Observable((subscriber: Subscriber<any>) => {
+      this.readFile(file, subscriber);
+    })
+
+    observable.subscribe((d) => {
+      this.base64Image = d;
+    })
+  }
+
+  readFile(file: File, subscriber: Subscriber<any>) {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file)
+
+    fileReader.onload = () => {
+      subscriber.next(fileReader.result)
+      subscriber.complete()
+    }
+    fileReader.onerror = () => {
+      subscriber.error()
+    }
+  }
 }
 
