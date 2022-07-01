@@ -97,7 +97,9 @@ export class NoticiasComponent implements OnInit {
   eliminarNoticia(x:any){
     console.log("llega a el componente");
     console.log(x);
-    this.api.eliminarNoticia(x);
+    this.api.eliminarNoticia(x).subscribe(data => {
+      console.log(data);
+    });
     this.alerta.open("Eliminado con éxito","OK!");
   }
 

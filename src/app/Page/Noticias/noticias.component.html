@@ -74,22 +74,20 @@
                             </mat-expansion-panel>
                         </mat-accordion>
 
-
-
                     </div>
+                </div>
+
+            </div>
+            <div style="display: flex; justify-content: space-around; margin-top: 10px;">
+                <div (click)="anteriorPag()" class="flechaMobile">
+                    <mat-icon>arrow_back_ios</mat-icon>
                 </div>
                 <div (click)="siguientePag()" class="flecha">
                     <mat-icon>arrow_forward_ios</mat-icon>
                 </div>
-            </div>
-            <div>
-                <div (click)="anteriorPag()" class="flechaMobile">
-                    <mat-icon>arrow_back_ios</mat-icon>
-                </div>
                 <div>
                     {{page}} - {{cantidadPag}}
                 </div>
-
             </div>
         </mat-tab>
 

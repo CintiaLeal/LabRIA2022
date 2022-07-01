@@ -43,7 +43,7 @@ export class NoticiasService {
     console.log(x);
     let direccion = this.url + "/Noticias/" + x;
     console.log(direccion);
-    return this.http.delete<any>(direccion);
+    return this.http.delete(direccion);
   }
   
   verNoticia(x: any): Observable<Noticia>{
