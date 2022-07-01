@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MateriaService } from 'src/app/servicios/materia.service';
 import { Materia } from '../../modelos/Materia';
 
@@ -20,8 +21,8 @@ nuevaMateriaForm = new FormGroup({
 
   public materias:Materia[] =[];
 
-  constructor(private service:MateriaService) {
-  
+  constructor(private service:MateriaService,private alerta: MatSnackBar) {
+    this.ngOnInit();
   }
   
   ngOnInit(): void {
@@ -29,6 +30,7 @@ nuevaMateriaForm = new FormGroup({
       next: value => this.materias = value,
       error: err => { alert('Error al cargar las noticias: ' + err) }
     });
+    this.panelOpenState = false;
   }
 
   //*funcion nueva*
@@ -43,7 +45,18 @@ nuevaMateriaForm = new FormGroup({
     this.service.nuevaMateria(x).subscribe(data => {
       console.log(data);
     });
-    //this.alerta.open("Creada con éxito","OK!");
+    this.alerta.open("Creada con éxito","OK!");
     this.ngOnInit();
   } 
+
+    //*funcion eliminar*
+    eliminarMateria(x:any){
+      this.ngOnInit();
+      this.service.eliminarMateria(x).subscribe(data => {
+        console.log(data);
+      });
+      this.alerta.open("Eliminado con éxito","OK!");
+     
+      this.ngOnInit();
+    }
 }

@@ -45,6 +45,7 @@ export class NoticiasComponent implements OnInit {
     window.screen.width > 500 ? this.offset = 3 : this.offset = 2;
     this.getNoticias(this.limit, this.offset);
     this.page = 1;
+    this.panelOpenState = false;
   }
   siguientePag() {
     if (this.page < this.cantidadPag) {
@@ -86,6 +87,7 @@ export class NoticiasComponent implements OnInit {
       console.log(data);
     });
     this.alerta.open("Eliminado con éxito","OK!");
+    
     this.ngOnInit();
   }
 

@@ -48,20 +48,23 @@
                                         <p>ID NOTICIA: {{x.id}}</p>
                                     </div>
                                     <div style="width: 60%;">
-                                        <form class="example-form">
-                                            <mat-form-field class="example-full-width" appearance="fill">
-                                                <mat-label>Nombre</mat-label>
-                                                <input placeholder={{x.nombre}} value={{x.nombre}} formControlName="titulo" matInput>
-                                            </mat-form-field>
-                                            <mat-form-field class="example-full-width" appearance="fill">
-                                                <mat-label>Descripción</mat-label>
-                                                <input placeholder={{x.descripcion}} value={{x.descripcion}} formControlName="descripcion" matInput>
-                                            </mat-form-field>
-                                            <mat-form-field class="example-full-width" appearance="fill">
-                                                <mat-label>Créditos Mínimos</mat-label>
-                                                <input placeholder={{x.creditosMinimos}} value={{x.creditosMinimos}} formControlName="creditosMinimos" matInput>
-                                            </mat-form-field>
-                                        </form>
+
+                                        <mat-form-field class="example-full-width" appearance="fill">
+                                            <mat-label>Nombre</mat-label>
+                                            <input placeholder={{x.nombre}} value={{x.nombre}} formControlName="titulo" matInput>
+                                        </mat-form-field>
+                                        <mat-form-field class="example-full-width" appearance="fill">
+                                            <mat-label>Descripción</mat-label>
+                                            <input placeholder={{x.descripcion}} value={{x.descripcion}} formControlName="descripcion" matInput>
+                                        </mat-form-field>
+                                        <mat-form-field class="example-full-width" appearance="fill">
+                                            <mat-label>Créditos Mínimos</mat-label>
+                                            <input placeholder={{x.creditosMinimos}} value={{x.creditosMinimos}} formControlName="creditosMinimos" matInput>
+                                        </mat-form-field>
+
+                                        <button (click)="eliminarMateria(x.id)" mat-icon-button color="warn">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
                                     </div>
                                 </mat-expansion-panel>
                             </mat-accordion>
