@@ -1,5 +1,5 @@
 import { Materia } from "./Materia";
-import { Previa } from "./Previa";
+import { PreviaUC } from "./Previa";
 
 export class UnidadesCurriculares {
   public id: string;
@@ -9,9 +9,9 @@ export class UnidadesCurriculares {
   public documento: string;
   public semestre: string;
   public materia: Materia[];
-  public previas: Previa[];
+  public previas: PreviaUC[];
 
-  constructor(id: string, nombre: string, descripcion: string, creditos: string, documento: string, semestre: string, materia: Materia[], previas: Previa[]) {
+  constructor(id: string, nombre: string, descripcion: string, creditos: string, documento: string, semestre: string, materia: Materia[], previas: PreviaUC[]) {
     this.id = id;
     this.nombre = nombre;
     this.descripcion = descripcion;

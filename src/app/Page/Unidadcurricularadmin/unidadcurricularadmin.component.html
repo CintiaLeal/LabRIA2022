@@ -6,7 +6,7 @@
     <mat-tab-group mat-align-tabs="start">
         <mat-tab label="Nueva">
             <div>
-                <form class="example-form">
+                <form [formGroup]="nuevaUCForm" class="example-form">
                     <div>
                         <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label>Id</mat-label>
@@ -43,45 +43,53 @@
                             <input formControlName="semestre" matInput>
                         </mat-form-field>
                     </div>
-                    <div>
+                    <div *ngIf="materias.length>0">
                         <mat-form-field appearance="fill">
                             <mat-label>Seleccione la Materia</mat-label>
-                            <mat-select>
-                                <mat-option value="option">Option</mat-option>
+                            <mat-select formControlName="materia">
+                                <mat-option *ngFor="let x of materias" [value]="x.id">
+                                    {{x.nombre}}
+                                </mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
-                    <button mat-button>Listo</button>
+                    <div *ngIf="unidadesC.length>0">
+                        <mat-form-field appearance="fill">
+                            <mat-label>EXAMEN</mat-label>
+                            <mat-select formControlName="unidadCpreviaExamen" multiple>
+                                <mat-select-trigger>
+                                    {{unidadesControl.value?.[0] || ''}}
+                                    <span *ngIf="(unidadesControl.value?.length || 0) > 1" class="list">
+                                      (+{{(unidadesControl.value?.length || 0) - 1}} {{unidadesControl.value?.length === 2 ? 'other' : 'others'}})
+                                    </span>
+                                </mat-select-trigger>
+                                <mat-option *ngFor="let topping of unidadesC" [value]="topping.id">{{topping.nombre}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div *ngIf="unidadesC.length>0">
+                        <mat-form-field appearance="fill">
+                            <mat-label>CURSO</mat-label>
+                            <mat-select formControlName="unidadCpreviaCurso" multiple>
+                                <mat-select-trigger>
+                                    {{unidadesControl.value?.[0] || ''}}
+                                    <span *ngIf="(unidadesControl.value?.length || 0) > 1" class="list">
+                                      (+{{(unidadesControl.value?.length || 0) - 1}} {{unidadesControl.value?.length === 2 ? 'other' : 'others'}})
+                                    </span>
+                                </mat-select-trigger>
+                                <mat-option *ngFor="let topping of unidadesC" [value]="topping.id">{{topping.nombre}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <button (click)="nuevaUC()" mat-button>Listo</button>
                 </form>
             </div>
         </mat-tab>
         <mat-tab label="Eliminar">
-            <form class="example-form">
-                <div>
-                    <mat-form-field class="example-full-width" appearance="fill">
-                        <mat-label>Id</mat-label>
-                        <input formControlName="idEliminar" matInput>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <button mat-button>Eliminar</button>
 
-                </div>
-            </form>
         </mat-tab>
         <mat-tab label="Informacíon">
-            <form class="example-form">
-                <div>
-                    <mat-form-field class="example-full-width" appearance="fill">
-                        <mat-label>Id</mat-label>
-                        <input formControlName="idBuscar" matInput>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <button mat-button (click)="openDialog('0ms', '0ms')">Buscar</button>
 
-                </div>
-            </form>
         </mat-tab>
 
     </mat-tab-group>

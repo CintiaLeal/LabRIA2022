@@ -22,10 +22,12 @@ export class NoticiasComponent implements OnInit {
   public noticias: Noticia[];
   public cantidadPag: number = 1;
   public base64Image: any;
+  
   editarNoticiaForm = new FormGroup({
     titulo: new FormControl('', Validators.required),
     descripcion: new FormControl('', Validators.required)
   });
+
   nuevaNoticiaForm = new FormGroup({
     id: new FormControl('', Validators.required),
     titulo: new FormControl('', Validators.required),
@@ -101,11 +103,17 @@ export class NoticiasComponent implements OnInit {
       imagen: Noticia.img,
       fechaCaducidad: Noticia.fechaCaducidad,
     }
-    this.api.editarNoticia(x).subscribe(data => {
+    console.log(x);
+
+    this.api.eliminarNoticia(x.id).subscribe(data => {
       console.log(data);
     });
 
-    this.alerta.open("Eliminado con éxito", "OK!");
+    this.api.nuevaNoticia(x).subscribe(d => {
+      console.log(d);
+    });
+
+    this.alerta.open("Editado con éxito", "OK!");
 
   }
 

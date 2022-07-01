@@ -17,6 +17,15 @@ h1 {
     height: 100px;
 }
 
+mat-form-field {
+    width: 800px;
+}
+
+.list {
+    opacity: 0.75;
+    font-size: 0.75em;
+}
+
 @keyframes rotation {
     from {
         transform: rotate(0deg);

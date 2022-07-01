@@ -1,4 +1,4 @@
-export class Previa {
+export class PreviaUC {
   public id: string;
   public unidadCurricular: string;
   public previa: string;
