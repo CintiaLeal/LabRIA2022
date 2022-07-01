@@ -1,82 +1,78 @@
 <body>
-
     <div class="Centrartitulo">
         <img src="/assets/img/logo.jpg" class="rotate" />
-        <h1>DOCUMENTOS </h1>
+        <h1>MATERIAS</h1>
     </div>
-    <div class="Principal">
-        <div class="Centrar">
-            <mat-stepper class="orientacion" [linear]="isLinear" #stepper>
-                <mat-step [stepControl]="firstFormGroup">
-                    <form [formGroup]="firstFormGroup">
-                        <ng-template matStepLabel>Nueva Materia</ng-template>
-                        <div>
-                            <div>
-
-                                <mat-label>Ingresa la información para una nueva materia</mat-label>
-                            </div>
-                            <mat-form-field appearance="fill">
-                                <mat-label>ID</mat-label>
-                                <input matInput placeholder="ID de la materia" formControlName="firstCtrl" required>
-                            </mat-form-field>
-                        </div>
-                        <div>
-                            <mat-form-field appearance="fill">
-                                <mat-label>Nombre</mat-label>
-                                <input matInput placeholder="Nombre de la materia" formControlName="firstCtrl" required>
-                            </mat-form-field>
-                        </div>
-                        <div>
-                            <mat-form-field appearance="fill">
-                                <mat-label>Descripción</mat-label>
-                                <input matInput placeholder="Descripción de la materia" formControlName="firstCtrl" required>
-                            </mat-form-field>
-                        </div>
-                        <div>
-                            <mat-form-field appearance="fill">
-                                <mat-label>Creditos Minimos</mat-label>
-                                <input matInput placeholder="Creditos de la materia" formControlName="firstCtrl" required>
-                            </mat-form-field>
-                        </div>
-                        <div>
-                            <button mat-button (click)="stepper.reset()">Reset</button>
-                            <button mat-button matStepperNext>Listo</button>
-                        </div>
-                    </form>
-                </mat-step>
-                <mat-step [stepControl]="secondFormGroup">
-                    <form [formGroup]="secondFormGroup">
-                        <ng-template matStepLabel>Eliminar Materia</ng-template>
-                        <div>
-                            <mat-label>Elimina una materia por su id</mat-label>
-                        </div>
-                        <mat-form-field appearance="fill">
-                            <mat-label>ID</mat-label>
-                            <input matInput formControlName="secondCtrl" required>
-                        </mat-form-field>
-                        <div>
-                            <button mat-button matStepperNext>Eliminar</button>
-                        </div>
-                    </form>
-                </mat-step>
-                <mat-step>
-                    <ng-template matStepLabel>Información</ng-template>
+    <mat-tab-group mat-align-tabs="start">
+        <mat-tab label="Nueva">
+            <div class="Centrardiv">
+                <form [formGroup]="nuevaMateriaForm" class="example-form">
                     <div>
-                        <mat-label>Busca la Información de un materia por su id</mat-label>
-                    </div>
-                    <div>
-                        <mat-form-field appearance="fill">
-                            <mat-label>ID</mat-label>
-                            <input matInput formControlName="secondCtrl" required>
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Nombre</mat-label>
+                            <input formControlName="nombre" matInput>
                         </mat-form-field>
                     </div>
                     <div>
-                        <button mat-button matStepperPrevious>Buscar</button>
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Descripción</mat-label>
+                            <input formControlName="descripcion" matInput>
+                        </mat-form-field>
                     </div>
-                </mat-step>
-            </mat-stepper>
-        </div>
+                    <div>
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Créditos Mínimos</mat-label>
+                            <input formControlName="creditosMinimos" matInput>
+                        </mat-form-field>
+                    </div>
+                    <button mat-raised-button (click)="onNueva()">Listo</button>
+                </form>
+            </div>
+        </mat-tab>
+        <mat-tab label="Editar">
+            <div class="Centrardiv">
+                <div class="Centrardiveditar">
+                    <div *ngFor="let x of materias">
+                        <div>
+                            <mat-accordion>
+                                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <h2>{{x.nombre}}</h2>
+                                        </mat-panel-title>
+                                        <mat-panel-description>
+                                            Ver {{panelOpenState ? '-' : '+'}}
+                                        </mat-panel-description>
+                                    </mat-expansion-panel-header>
+                                    <div style="width: 60%;">
+                                        <p>ID NOTICIA: {{x.id}}</p>
+                                    </div>
+                                    <div style="width: 60%;">
+                                        <form class="example-form">
+                                            <mat-form-field class="example-full-width" appearance="fill">
+                                                <mat-label>Nombre</mat-label>
+                                                <input placeholder={{x.nombre}} value={{x.nombre}} formControlName="titulo" matInput>
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width" appearance="fill">
+                                                <mat-label>Descripción</mat-label>
+                                                <input placeholder={{x.descripcion}} value={{x.descripcion}} formControlName="descripcion" matInput>
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width" appearance="fill">
+                                                <mat-label>Créditos Mínimos</mat-label>
+                                                <input placeholder={{x.creditosMinimos}} value={{x.creditosMinimos}} formControlName="creditosMinimos" matInput>
+                                            </mat-form-field>
+                                        </form>
+                                    </div>
+                                </mat-expansion-panel>
+                            </mat-accordion>
 
-    </div>
+                        </div>
+                    </div>
 
+                </div>
+            </div>
+
+        </mat-tab>
+
+    </mat-tab-group>
 </body>

@@ -50,5 +50,17 @@ export class NoticiasService {
     let a = this.url + "/Noticias/" + x;
     return this.http.get<Noticia>(a);
   }
+  editarNoticia(form:Noticia){
+    let noticiaData: Noticia ={
+      id: form.id,
+      titulo: form.titulo,
+      descripcion: form.descripcion,
+      imagen: form.imagen,
+      fechaCaducidad: form.fechaCaducidad
+    }
+    let direccion = this.url + "/Noticias/";
+    
+    return this.http.put<Noticia>(direccion + noticiaData.id, form);
+  }
 
 }

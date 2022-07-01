@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Materia } from "../modelos/Materia";
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,5 +14,10 @@ export class MateriaService {
 
   getMaterias() {
     return this.http.get<Materia[]>(this.url + '/Materias');
+  }
+
+  nuevaMateria(form:Materia){
+    let direccion = this.url + "/Materias";
+    return this.http.post(direccion, form);
   }
 }

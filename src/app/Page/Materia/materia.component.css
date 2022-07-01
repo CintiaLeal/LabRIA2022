@@ -1,13 +1,12 @@
-.mat-stepper-vertical {
-    margin-top: 8px;
-}
-
-.mat-form-field {
-    margin-top: 12px;
-}
-
 .Centrartitulo {
     width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Centrardiv {
     position: relative;
     display: flex;
     justify-content: center;
@@ -25,6 +24,24 @@ h1 {
     height: 100px;
 }
 
+img {
+    max-width: 12%;
+    max-height: 12%;
+}
+
+mat-form-field {
+    width: 800px;
+}
+
+.Centrardiveditar {
+    width: 800px;
+}
+
+mat-panel-description {
+    justify-content: right;
+    align-items: center;
+}
+
 @keyframes rotation {
     from {
         transform: rotate(0deg);
@@ -32,6 +49,21 @@ h1 {
     to {
         transform: rotate(359deg);
     }
+}
+
+.mat-tab-group {
+    margin-bottom: 48px;
+}
+
+.btn {
+    background-color: #e0e0e0;
+    width: 10%;
+    font-family: Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+.Centrardiveditar {
+    width: 80%;
 }
 
 @media (max-width: 500px) {
@@ -44,16 +76,7 @@ h1 {
         width: 60px;
         height: 60px;
     }
-    mat-stepper {
-        orientation: "vertical";
-    }
-    .orientacion {
-        orientation: vertical;
-    }
-    .mat-stepper-vertical {
-        margin-left: 2px;
-    }
-    .mat-form-field {
-        margin-right: 3px;
+    mat-form-field {
+        width: 100%;
     }
 }

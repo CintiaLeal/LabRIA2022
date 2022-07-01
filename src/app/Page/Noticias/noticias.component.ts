@@ -11,7 +11,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 export class NoticiasComponent implements OnInit {
   
-
   //Desplegable
   panelOpenState = false;
 
@@ -22,6 +21,10 @@ export class NoticiasComponent implements OnInit {
   public noticias: Noticia[];
   public cantidadPag: number = 1;
 
+  editarNoticiaForm = new FormGroup({
+    titulo: new FormControl('',Validators.required),
+    descripcion: new FormControl('',Validators.required)
+  }); 
   nuevaNoticiaForm = new FormGroup({
     id: new FormControl('',Validators.required),
     titulo: new FormControl('',Validators.required),
@@ -35,6 +38,7 @@ export class NoticiasComponent implements OnInit {
     this.page = 0;
     this.offset = 0;
     this.noticias = [];
+    this.ngOnInit();
   }
 
   ngOnInit(): void {
@@ -64,9 +68,47 @@ export class NoticiasComponent implements OnInit {
       this.cantidadPag = Math.trunc(data.size / this.offset);
     });
   }
+
+  selectedFile: any = null;
+
+  //type file
+  onFileSelected(event: any): void {
+      this.selectedFile = event.target.files[0] ?? null;
+  }
+  exampleFlag=false; // set it to false initially so box is not disabled
+
+  readonly = null;
+
+  //*funcion eliminar*
+  eliminarNoticia(x:any){
+    this.ngOnInit();
+    this.api.eliminarNoticia(x).subscribe(data => {
+      console.log(data);
+    });
+    this.alerta.open("Eliminado con éxito","OK!");
+    this.ngOnInit();
+  }
+
+  //*funcion editar* 
+  editarNoticia(Noticia:any ){
+    let x: Noticia={
+      id: Noticia.id,
+      titulo: this.editarNoticiaForm.controls["titulo"].value  ? this.editarNoticiaForm.controls["titulo"].value : " ",
+      descripcion: this.editarNoticiaForm.controls["descripcion"].value  ? this.editarNoticiaForm.controls["descripcion"].value : " ",
+      imagen: Noticia.img,
+      fechaCaducidad: Noticia.fechaCaducidad,
+    }
+    this.api.editarNoticia(x).subscribe(data => {
+      console.log(data);
+    });
+   
+    this.alerta.open("Eliminado con éxito","OK!");
+
+  }
+
+  //*funcion nueva*
   onNueva() {
     console.log("Llega a la funcion");
-    
     let x: Noticia={
       id: "0",
       titulo: this.nuevaNoticiaForm.controls["titulo"].value  ? this.nuevaNoticiaForm.controls["titulo"].value : " ",
@@ -80,28 +122,7 @@ export class NoticiasComponent implements OnInit {
       console.log(data);
     });
     this.alerta.open("Creada con éxito","OK!");
-  }
-  selectedFile: any = null;
-
-  //type file
-  onFileSelected(event: any): void {
-      this.selectedFile = event.target.files[0] ?? null;
-  }
-  exampleFlag=false; // set it to false initially so box is not disabled
-
-  readonly = null;
-
-  //funcion eliminar
-  //eliminarNoticia
-
-  eliminarNoticia(x:any){
-    console.log("llega a el componente");
-    console.log(x);
-    this.api.eliminarNoticia(x).subscribe(data => {
-      console.log(data);
-    });
-    this.alerta.open("Eliminado con éxito","OK!");
-  }
-
+    this.ngOnInit();
+  } 
 }
 

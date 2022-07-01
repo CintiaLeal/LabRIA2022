@@ -36,47 +36,51 @@
                 </form>
             </div>
         </mat-tab>
-        <mat-tab label="Eliminar">
-            <div>
-                <div *ngFor="let x of noticias">
-                    <div>
-                        <mat-accordion>
-                            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                                <mat-expansion-panel-header>
-                                    <mat-panel-title>
-                                        <h2>{{x.titulo}}</h2>
-                                    </mat-panel-title>
-                                    <mat-panel-description>
-                                        Ver {{panelOpenState ? '-' : '+'}}
-                                    </mat-panel-description>
-                                </mat-expansion-panel-header>
-                                <div style="width: 50%;">
-                                    <p>ID NOTICIA: {{x.id}}</p>
-                                    <img mat-card-image src={{x.imagen}}>
-                                </div>
-                                <div style="width: 50%;">
-                                    <mat-form-field class="example-full-width" appearance="fill">
-                                        <mat-label>Título</mat-label>
-                                        <input value={{x.titulo}} formControlName="titulo" matInput>
-                                    </mat-form-field>
-                                    <mat-form-field class="example-full-width" appearance="fill">
-                                        <mat-label>Descripción</mat-label>
-                                        <input value={{x.descripcion}} formControlName="descripcion" matInput>
-                                    </mat-form-field>
-                                </div>
-                                <button (click)="eliminarNoticia(x.id)" mat-icon-button color="warn">
-                                    <mat-icon>delete</mat-icon>
-                                </button>
-                                <button mat-icon-button color="black">
-                                    <mat-icon>editar</mat-icon>
-                                </button>
+        <mat-tab label="Editar">
+            <div class="Centrardiv">
+                <div class="Centrardiveditar">
+                    <div *ngFor="let x of noticias">
+                        <div>
+                            <mat-accordion>
+                                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <h2>{{x.titulo}}</h2>
+                                        </mat-panel-title>
+                                        <mat-panel-description>
+                                            Ver {{panelOpenState ? '-' : '+'}}
+                                        </mat-panel-description>
+                                    </mat-expansion-panel-header>
+                                    <div style="width: 60%;">
+                                        <p>ID NOTICIA: {{x.id}}</p>
+                                        <img mat-card-image src={{x.imagen}}>
+                                    </div>
+                                    <div style="width: 60%;">
+                                        <form [formGroup]="editarNoticiaForm" class="example-form">
+                                            <mat-form-field class="example-full-width" appearance="fill">
+                                                <mat-label>Título</mat-label>
+                                                <input placeholder={{x.titulo}} value={{x.titulo}} formControlName="titulo" matInput>
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width" appearance="fill">
+                                                <mat-label>Descripción</mat-label>
+                                                <input placeholder={{x.descripcion}} value={{x.descripcion}} formControlName="descripcion" matInput>
+                                            </mat-form-field>
+                                        </form>
+                                    </div>
+                                    <button (click)="eliminarNoticia(x.id)" mat-icon-button color="warn">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                    <button (click)="editarNoticia(x)" mat-icon-button color="black">
+                                        <mat-icon>editar</mat-icon>
+                                    </button>
 
-                            </mat-expansion-panel>
-                        </mat-accordion>
+                                </mat-expansion-panel>
+                            </mat-accordion>
 
+                        </div>
                     </div>
-                </div>
 
+                </div>
             </div>
             <div style="display: flex; justify-content: space-around; margin-top: 10px;">
                 <div (click)="anteriorPag()" class="flechaMobile">
