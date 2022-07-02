@@ -27,5 +27,16 @@ export class MateriaService {
     let direccion = this.url + "/Materias/" + x
     return this.http.delete(direccion);
   }
-  
+  editarMateria(form:Materia){
+    let materiaData: Materia ={
+      id: form.id,
+      nombre: form.nombre,
+      descripcion: form.descripcion,
+      creditosMinimos: form.creditosMinimos
+    }
+    console.log(materiaData);
+    let direccion = this.url + "/Materias/" + form.id;
+    return this.http.put(direccion, form);
+   
+  }
 }

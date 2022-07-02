@@ -58,11 +58,8 @@ export class NoticiasService {
       imagen: form.imagen,
       fechaCaducidad: form.fechaCaducidad
     }
-    
     console.log(noticiaData);
     let direccion = this.url + "/Noticias/" + form.id;
-   
-    
     return this.http.put(direccion, form);
    
   }

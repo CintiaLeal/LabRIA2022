@@ -11,12 +11,19 @@ import { Materia } from '../../modelos/Materia';
 })
 export class MateriaComponent implements OnInit {
   panelOpenState = false;
- 
+value = "" ; value2 = ""; value3 = "";
 //Para hacer la funcion onNueva
 nuevaMateriaForm = new FormGroup({
   nombre: new FormControl('',Validators.required),
   descripcion: new FormControl('',Validators.required),
   creditosMinimos: new FormControl('',Validators.required),
+});
+
+//Para editar la funcion 
+editarMateriaForm = new FormGroup({
+  nombre: new FormControl(''),
+  descripcion: new FormControl(''),
+  creditosMinimos: new FormControl('')
 });
 
   public materias:Materia[] =[];
@@ -26,6 +33,7 @@ nuevaMateriaForm = new FormGroup({
   }
   
   ngOnInit(): void {
+    this.value = "" ; this.value2 = ""; this.value3 = "";
     this.service.getMaterias().subscribe({
       next: value => this.materias = value,
       error: err => { alert('Error al cargar las noticias: ' + err) }
@@ -46,6 +54,7 @@ nuevaMateriaForm = new FormGroup({
       console.log(data);
     });
     this.alerta.open("Creada con éxito","OK!");
+    
     this.ngOnInit();
   } 
 
@@ -59,4 +68,20 @@ nuevaMateriaForm = new FormGroup({
      
       this.ngOnInit();
     }
+
+    //*funcion editar*
+    editarMateria(Materia: any) {
+      let x: Materia = {
+        id: Materia.id,
+        nombre: this.editarMateriaForm.controls["nombre"].value ?  this.editarMateriaForm.controls["nombre"].value : Materia.nombre,
+        descripcion: this.editarMateriaForm.controls["descripcion"].value  ? this.editarMateriaForm.controls["descripcion"].value : Materia.descripcion,
+        creditosMinimos: this.editarMateriaForm.controls["creditosMinimos"].value  ? this.editarMateriaForm.controls["creditosMinimos"].value : Materia.creditosMinimos
+      }
+      this.service.editarMateria(x).subscribe(data => {
+        console.log(data);
+      });
+      this.alerta.open("Editado con éxito", "OK!");
+      this.ngOnInit();
+    }
+  
 }

@@ -103,14 +103,11 @@ export class NoticiasComponent implements OnInit {
       imagen: "Noticia.img",
       fechaCaducidad: Noticia.fechaCaducidad,
     }
-    console.log(x);
-
-
     this.api.editarNoticia(x).subscribe(data => {
       console.log(data);
     });
     this.alerta.open("Editado con éxito", "OK!");
-
+    this.ngOnInit();
   }
 
   //*funcion nueva*

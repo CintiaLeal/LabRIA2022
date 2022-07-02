@@ -48,24 +48,27 @@
                                         <p>ID NOTICIA: {{x.id}}</p>
                                     </div>
                                     <div style="width: 60%;">
-
-                                        <mat-form-field class="example-full-width" appearance="fill">
-                                            <mat-label>Nombre</mat-label>
-                                            <input placeholder={{x.nombre}} value={{x.nombre}} formControlName="titulo" matInput>
-                                        </mat-form-field>
-                                        <mat-form-field class="example-full-width" appearance="fill">
-                                            <mat-label>Descripción</mat-label>
-                                            <input placeholder={{x.descripcion}} value={{x.descripcion}} formControlName="descripcion" matInput>
-                                        </mat-form-field>
-                                        <mat-form-field class="example-full-width" appearance="fill">
-                                            <mat-label>Créditos Mínimos</mat-label>
-                                            <input placeholder={{x.creditosMinimos}} value={{x.creditosMinimos}} formControlName="creditosMinimos" matInput>
-                                        </mat-form-field>
-
-                                        <button (click)="eliminarMateria(x.id)" mat-icon-button color="warn">
-                                            <mat-icon>delete</mat-icon>
-                                        </button>
+                                        <form [formGroup]="editarMateriaForm" class="example-form">
+                                            <mat-form-field class="example-full-width" appearance="fill">
+                                                <mat-label>Nombre</mat-label>
+                                                <input placeholder={{x.nombre}} value={{x.nombre}} formControlName="nombre" [(ngModel)]="value" matInput>
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width" appearance="fill">
+                                                <mat-label>Descripción</mat-label>
+                                                <input placeholder={{x.descripcion}} value={{x.descripcion}} formControlName="descripcion" [(ngModel)]="value2" matInput>
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width" appearance="fill">
+                                                <mat-label>Créditos Mínimos</mat-label>
+                                                <input placeholder={{x.creditosMinimos}} value={{x.creditosMinimos}} formControlName="creditosMinimos" [(ngModel)]="value3" matInput>
+                                            </mat-form-field>
+                                        </form>
                                     </div>
+                                    <button (click)="eliminarMateria(x.id)" mat-icon-button color="warn">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                    <button (click)="editarMateria(x)" mat-icon-button color="black">
+                                        <mat-icon>editar</mat-icon>
+                                    </button>
                                 </mat-expansion-panel>
                             </mat-accordion>
 
