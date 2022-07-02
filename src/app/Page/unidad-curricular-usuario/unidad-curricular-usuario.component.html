@@ -1,6 +1,6 @@
 <div class="divBack">
-  /* <mat-tab-group id="matTab" *ngFor="let unidad of unidadesCurriculares">
-    <mat-tab label="{{unidad.nombre}}">
+  <mat-tab-group id="matTab">
+    <mat-tab *ngFor="let unidad of unidadesCurriculares" label="{{unidad.nombre}}">
       <div id="div">
         <mat-tab-group id="all">
           <mat-tab label="descripcion">
@@ -20,22 +20,21 @@
           </mat-tab>
 
           <mat-tab label="Materia">
-            <!-- Id: {{unidad.materia.id}}
-            Nombre: {{unidad.materia.nombre}}
-            Descripcion: {{unidad.materia.descripcion}
-            Creditos minimos: {{unidad.materia.creditosMinimos}} -->
+            <div *ngFor="let p of unidad.materia">
+
+              {{p}}
+
+            </div>
+            <!-- {{unidad.materia}} -->
+
           </mat-tab>
 
-          <mat-tab label="Previas" *ngFor="let previa of unidad.previas">
-            <mat-tab-group id="all">
-              <!-- <mat-tab label="{{previa.unidadCurricular}}">
-                              Id: {{previa.id}}
-                              UnidadCurricular: {{previa.unidadCurricular}}
-                              Previa: {{previa.previa}}
-                              Tipo previa: {{previa.tipoPrevia}}
-                          </mat-tab> -->
-            </mat-tab-group>
-
+          <mat-tab label="Previas">
+            <div *ngFor="let previa of unidad.previas">
+              Id: {{previa.id}}<br />
+              Previa: {{previa.previa}} <br />
+              Tipo previa: {{previa.tipoPrevia}} <br /> <br /> <br /><br /><br /><br />
+            </div>
           </mat-tab>
 
         </mat-tab-group>
