@@ -58,7 +58,7 @@ export class UnidadcurricularadminComponent {
     let auxPrevia = this.nuevaUCForm.value.unidadCpreviaCurso ? this.nuevaUCForm.value.unidadCpreviaCurso: [];
 
     for(let i=0;i< auxPrevia.length;i++){
-     previa.push(new PreviaUC("0" ,this.nuevaUCForm.value.id ? this.nuevaUCForm.value.id:"",auxPrevia[i],"CURSO"));
+     previa.push(new PreviaUC("0",this.nuevaUCForm.value.id ? this.nuevaUCForm.value.id:"",auxPrevia[i],"CURSO"));
     }
 
     auxPrevia = this.nuevaUCForm.value.unidadCpreviaExamen ? this.nuevaUCForm.value.unidadCpreviaExamen: [];

@@ -100,19 +100,15 @@ export class NoticiasComponent implements OnInit {
       id: Noticia.id,
       titulo: this.editarNoticiaForm.controls["titulo"].value ? this.editarNoticiaForm.controls["titulo"].value : " ",
       descripcion: this.editarNoticiaForm.controls["descripcion"].value ? this.editarNoticiaForm.controls["descripcion"].value : " ",
-      imagen: Noticia.img,
+      imagen: "Noticia.img",
       fechaCaducidad: Noticia.fechaCaducidad,
     }
     console.log(x);
 
-    this.api.eliminarNoticia(x.id).subscribe(data => {
+
+    this.api.editarNoticia(x).subscribe(data => {
       console.log(data);
     });
-
-    this.api.nuevaNoticia(x).subscribe(d => {
-      console.log(d);
-    });
-
     this.alerta.open("Editado con éxito", "OK!");
 
   }

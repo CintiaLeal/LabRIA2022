@@ -50,7 +50,7 @@ export class NoticiasService {
     let a = this.url + "/Noticias/" + x;
     return this.http.get<Noticia>(a);
   }
-  editarNoticia(form:Noticia):Observable<Noticia>{
+  editarNoticia(form:Noticia){
     let noticiaData: Noticia ={
       id: form.id,
       titulo: form.titulo,
@@ -58,12 +58,13 @@ export class NoticiasService {
       imagen: form.imagen,
       fechaCaducidad: form.fechaCaducidad
     }
-    this.eliminarNoticia(noticiaData.id);
-    //this.nuevaNoticia(noticiaData);
-    console.log(noticiaData);
-    let direccion = this.url + "/Noticias/" + noticiaData.id;
-    return <any> this.nuevaNoticia(noticiaData);
     
+    console.log(noticiaData);
+    let direccion = this.url + "/Noticias/" + form.id;
+   
+    
+    return this.http.put(direccion, form);
+   
   }
 
 }
