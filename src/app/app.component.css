@@ -111,6 +111,14 @@ mat-toolbar {
   cursor: pointer;
 }
 
+#iniciarSesion {
+  margin-left: 10rem;
+  justify-content: space-around;
+  text-decoration: none;
+  color: #098A9A;
+  cursor: pointer;
+}
+
 #logo {
   width: 50px;
 }

@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'lab';
+  public isLogged: Boolean = false;
+
+  changeUser(isLogged: boolean) {
+    this.isLogged = isLogged
+  }
+
+  logout() {
+    localStorage.removeItem("token")
+    this.changeUser(false);
+  }
 }

@@ -1,31 +1,66 @@
-<mat-toolbar id="desktopNav">
+<div *ngIf="isLogged === false">
+  <mat-toolbar id="desktopNav">
     <img id="logo" src="/assets/img/logo.jpg" />
     <div id="navbarList">
-        <span routerLink="/">Home</span>
-        <span routerLink="./noticias">Noticias</span>
-        <span mat-flat-button [matMenuTriggerFor]="menu">Información</span>
-        <mat-menu #menu="matMenu">
-            <span routerLink="/documentoadmin" mat-menu-item>Datos de interes</span>
-            <span routerLink="/materia" mat-menu-item>Materias</span>
-            <span routerLink="/unidadcurricularadmin" mat-menu-item>Unidades curriculares</span>
-        </mat-menu>
-        <span routerLink="/contacto">Contactos</span>
+      <span routerLink="/">Home</span>
+      <span routerLink="verNoticias">Noticias</span>
+      <span mat-flat-button [matMenuTriggerFor]="menu">Información</span>
+      <mat-menu #menu="matMenu">
+        <span routerLink="/documentoadmin" mat-menu-item>Datos de interes</span>
+        <span routerLink="/materiasuser" mat-menu-item>Materias</span>
+        <span routerLink="/unidadcurricularuser" mat-menu-item>Unidades curriculares</span>
+      </mat-menu>
+      <span routerLink="/contacto">Contactos</span>
     </div>
     <div>
-        <img src="/assets/img/logout.jpg" />
+      <span id="iniciarSesion" routerLink="/login" mat-menu-item><b>Iniciar sesion</b></span>
     </div>
-</mat-toolbar>
+  </mat-toolbar>
 
-<mat-toolbar id="mobileNav">
+  <mat-toolbar id="mobileNav">
     <img id="logo" src="/assets/img/logo.jpg" />
     <mat-icon style="color: #359FFF" mat-flat-button [matMenuTriggerFor]="menuMobile">menu</mat-icon>
     <mat-menu #menuMobile="matMenu">
-        <span routerLink="./noticias" mat-menu-item>Noticias</span>
+      <span routerLink="./noticias" mat-menu-item>Noticias</span>
+      <span routerLink="/documentoadmin" mat-menu-item>Datos de interes</span>
+      <span routerLink="/materiasuser" mat-menu-item>Materias</span>
+      <span routerLink="/unidadcurricularuser" mat-menu-item>Unidades curriculares</span>
+      <span routerLink="/contacto" mat-menu-item>Contactos</span>
+      <span routerLink="/login" mat-menu-item><b>Iniciar sesion</b></span>
+    </mat-menu>
+  </mat-toolbar>
+</div>
+
+<div *ngIf="isLogged === true">
+  <mat-toolbar id="desktopNav">
+    <img id="logo" src="/assets/img/logo.jpg" />
+    <div id="navbarList">
+      <span routerLink="/">Home</span>
+      <span routerLink="./noticias">Noticias</span>
+      <span mat-flat-button [matMenuTriggerFor]="menu">Información</span>
+      <mat-menu #menu="matMenu">
         <span routerLink="/documentoadmin" mat-menu-item>Datos de interes</span>
         <span routerLink="/materia" mat-menu-item>Materias</span>
         <span routerLink="/unidadcurricularadmin" mat-menu-item>Unidades curriculares</span>
-        <span routerLink="/contacto" mat-menu-item>Contactos</span>
-    </mat-menu>
-</mat-toolbar>
+      </mat-menu>
+      <span routerLink="/contacto">Contactos</span>
+    </div>
+    <div>
+      <img style="cursor: pointer;" (click)="logout()" src="/assets/img/logout .jpg" />
+    </div>
+  </mat-toolbar>
 
+  <mat-toolbar id="mobileNav">
+    <img id="logo" src="/assets/img/logo.jpg" />
+    <mat-icon style="color: #359FFF" mat-flat-button [matMenuTriggerFor]="menuMobile">menu</mat-icon>
+    <mat-menu #menuMobile="matMenu">
+      <span routerLink="./noticias" mat-menu-item>Noticias</span>
+      <span routerLink="/documentoadmin" mat-menu-item>Datos de interes</span>
+      <span routerLink="/materia" mat-menu-item>Materias</span>
+      <span routerLink="/unidadcurricularadmin" mat-menu-item>Unidades curriculares</span>
+      <span routerLink="/contacto" mat-menu-item>Contactos</span>
+      <span (click)="logout()" mat-menu-item>Salir</span>
+    </mat-menu>
+  </mat-toolbar>
+</div>
 <router-outlet></router-outlet>
