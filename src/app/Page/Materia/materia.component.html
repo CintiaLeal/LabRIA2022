@@ -25,7 +25,9 @@
                             <input formControlName="creditosMinimos" matInput>
                         </mat-form-field>
                     </div>
-                    <button mat-raised-button (click)="onNueva()">Listo</button>
+                    <div class="Centrartitulo">
+                        <button mat-raised-button class="button" (click)="onNueva()">Listo</button>
+                    </div>
                 </form>
             </div>
         </mat-tab>
@@ -45,7 +47,7 @@
                                         </mat-panel-description>
                                     </mat-expansion-panel-header>
                                     <div style="width: 60%;">
-                                        <p>ID NOTICIA: {{x.id}}</p>
+                                        <h4>ID DE LA MATERIA: {{x.id}}</h4>
                                     </div>
                                     <div style="width: 60%;">
                                         <form [formGroup]="editarMateriaForm" class="example-form">

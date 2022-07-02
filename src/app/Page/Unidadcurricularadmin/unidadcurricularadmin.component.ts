@@ -7,6 +7,7 @@ import { MateriaService } from 'src/app/servicios/materia.service';
 import { Materia } from 'src/app/modelos/Materia';
 import { PreviaUC } from 'src/app/modelos/Previa';
 import { UnidadesCurriculares } from 'src/app/modelos/unidadesCurriculares';
+import { PreviaAdd } from 'src/app/modelos/previaAdd';
 @Component({
   selector: 'app-unidadcurricularadmin',
   templateUrl: './unidadcurricularadmin.component.html',
@@ -53,18 +54,18 @@ export class UnidadcurricularadminComponent {
   }
   //nueva funcion
   nuevaUC(){
-    let previa: PreviaUC[] = [];
+    let previa: PreviaAdd[] = [];
 
     let auxPrevia = this.nuevaUCForm.value.unidadCpreviaCurso ? this.nuevaUCForm.value.unidadCpreviaCurso: [];
 
     for(let i=0;i< auxPrevia.length;i++){
-     previa.push(new PreviaUC("0",this.nuevaUCForm.value.id ? this.nuevaUCForm.value.id:"",auxPrevia[i],"CURSO"));
+     previa.push(new PreviaAdd(this.nuevaUCForm.value.id ? this.nuevaUCForm.value.id:"",auxPrevia[i],"CURSO"));
     }
 
     auxPrevia = this.nuevaUCForm.value.unidadCpreviaExamen ? this.nuevaUCForm.value.unidadCpreviaExamen: [];
 
     for(let i=0;i< auxPrevia.length;i++){
-     previa.push(new PreviaUC("0",this.nuevaUCForm.value.id ? this.nuevaUCForm.value.id:"",auxPrevia[i],"EXAMEN"));
+     previa.push(new PreviaAdd(this.nuevaUCForm.value.id ? this.nuevaUCForm.value.id:"",auxPrevia[i],"EXAMEN"));
     }
 
     console.log(this.nuevaUCForm.value);
@@ -77,6 +78,7 @@ export class UnidadcurricularadminComponent {
         materia = this.materias[i];
       }
     }
+   
     console.log(previa);
     let x: UnidadesCurriculares={
       id: form.controls["id"].value ?  form.controls["id"].value: "",
@@ -86,13 +88,20 @@ export class UnidadcurricularadminComponent {
       documento: form.controls["documento"].value ?  form.controls["documento"].value: "",
       semestre: form.controls["semestre"].value ?  form.controls["semestre"].value: "",
       materia: materia,
-      previas: previa
+      previas: []
     }
     console.log(x);
 
+
     this.serviceU.nuevaUC(x).subscribe(d => {
-      console.log(d);
+      previa.forEach(element => {
+        this.serviceU.addPrevia(element).subscribe(e=>{
+          console.log(e);
+        });
+      });
     });
+    
+
   }
 
 }

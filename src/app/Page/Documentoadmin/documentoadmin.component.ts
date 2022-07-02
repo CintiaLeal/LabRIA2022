@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { DocumentosService } from 'src/app/servicios/documentos.service';
 import { Documento } from 'src/app/modelos/documentos';
-
+import { Observable, subscribeOn, Subscriber } from 'rxjs';
 
 interface Tipo {
   value: string;
@@ -32,6 +32,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./documentoadmin.component.css']
 })
 export class DocumentoadminComponent  {
+  public base64Image: any;
   public documentosIF:Documento[] =[];
   public documentosOL:Documento[] =[];
   public documentosDI:Documento[] =[];
@@ -67,4 +68,36 @@ export class DocumentoadminComponent  {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
   checked = false;
+
+
+  
+  convertToBase64(file: File) {
+    console.log(file);
+    const observable = new Observable((subscriber: Subscriber<any>) => {
+      this.readFile(file, subscriber);
+    })
+
+    observable.subscribe((d) => {
+      this.base64Image = d;
+    })
+  }
+
+  readFile(file: File, subscriber: Subscriber<any>) {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file)
+
+    fileReader.onload = () => {
+      subscriber.next(fileReader.result)
+      subscriber.complete()
+    }
+    fileReader.onerror = () => {
+      subscriber.error()
+    }
+  }
+  
+  onFileSelected(event: any): void {
+    // this.selectedFile = event.target.files[0] ?? null;
+     this.convertToBase64(event.target.files[0]);
+   }
+  
 }

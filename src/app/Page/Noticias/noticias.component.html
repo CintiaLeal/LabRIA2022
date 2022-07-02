@@ -21,7 +21,6 @@
                         </mat-form-field>
                     </div>
                     <div>
-
                         <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
                         <input hidden (change)="onFileSelected($event)" #fileInput type="file" formControlName="imagen">
                         <span class="file-name">{{selectedFile?.name}}</span>
@@ -32,7 +31,9 @@
                             <input type="date" formControlName="fechaCaducidad" matInput>
                         </mat-form-field>
                     </div>
-                    <button mat-raised-button (click)="onNueva()">Listo</button>
+                    <div class="Centrartitulo">
+                        <button mat-raised-button class="button" (click)="onNueva()">Listo</button>
+                    </div>
                 </form>
             </div>
         </mat-tab>
@@ -51,29 +52,40 @@
                                             Ver {{panelOpenState ? '-' : '+'}}
                                         </mat-panel-description>
                                     </mat-expansion-panel-header>
-                                    <div style="width: 60%;">
-                                        <p>ID NOTICIA: {{x.id}}</p>
-                                        <img mat-card-image src={{x.imagen}}>
-                                    </div>
-                                    <div style="width: 60%;">
-                                        <form [formGroup]="editarNoticiaForm" class="example-form">
-                                            <mat-form-field class="example-full-width" appearance="fill">
-                                                <mat-label>Título</mat-label>
-                                                <input placeholder={{x.titulo}} value={{x.titulo}} formControlName="titulo" matInput>
-                                            </mat-form-field>
-                                            <mat-form-field class="example-full-width" appearance="fill">
-                                                <mat-label>Descripción</mat-label>
-                                                <input placeholder={{x.descripcion}} value={{x.descripcion}} formControlName="descripcion" matInput>
-                                            </mat-form-field>
-                                        </form>
-                                    </div>
-                                    <button (click)="eliminarNoticia(x.id)" mat-icon-button color="warn">
-                                        <mat-icon>delete</mat-icon>
-                                    </button>
-                                    <button (click)="editarNoticia(x)" mat-icon-button color="black">
-                                        <mat-icon>editar</mat-icon>
-                                    </button>
+                                    <div class="divPrincipal">
+                                        <div>
+                                            <div>
+                                                <p>ID NOTICIA: {{x.id}}</p>
+                                                <form [formGroup]="editarNoticiaForm" class="example-form">
+                                                    <mat-form-field class="example-full-width" appearance="fill">
+                                                        <mat-label>Título</mat-label>
+                                                        <input placeholder={{x.titulo}} value={{x.titulo}} formControlName="titulo" matInput>
+                                                    </mat-form-field>
+                                                    <mat-form-field class="example-full-width" appearance="fill">
+                                                        <mat-label>Descripción</mat-label>
+                                                        <input placeholder={{x.descripcion}} value={{x.descripcion}} formControlName="descripcion" matInput>
+                                                    </mat-form-field>
+                                                    <mat-form-field class="example-full-width" appearance="fill">
+                                                        <mat-label>Fecha</mat-label>
+                                                        <input type="date" formControlName="fechaCaducidad" matInput>
+                                                    </mat-form-field>
+                                                </form>
+                                            </div>
+                                            <div>
+                                                <button (click)="eliminarNoticia(x.id)" mat-icon-button color="warn">
+                                                <mat-icon>delete</mat-icon>
+                                                </button>
+                                                <button (click)="editarNoticia(x)" mat-icon-button color="black">
+                                                <mat-icon>editar</mat-icon>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div>
 
+                                            <img mat-card-image src={{x.imagen}}>
+                                        </div>
+
+                                    </div>
                                 </mat-expansion-panel>
                             </mat-accordion>
 
@@ -82,15 +94,16 @@
 
                 </div>
             </div>
+
             <div style="display: flex; justify-content: space-around; margin-top: 10px;">
                 <div (click)="anteriorPag()" class="flechaMobile">
                     <mat-icon>arrow_back_ios</mat-icon>
                 </div>
-                <div (click)="siguientePag()" class="flecha">
-                    <mat-icon>arrow_forward_ios</mat-icon>
-                </div>
                 <div>
                     {{page}} - {{cantidadPag}}
+                </div>
+                <div (click)="siguientePag()" class="flecha">
+                    <mat-icon>arrow_forward_ios</mat-icon>
                 </div>
             </div>
         </mat-tab>

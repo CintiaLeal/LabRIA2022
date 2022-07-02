@@ -14,9 +14,9 @@ export class MateriaComponent implements OnInit {
 value = "" ; value2 = ""; value3 = "";
 //Para hacer la funcion onNueva
 nuevaMateriaForm = new FormGroup({
-  nombre: new FormControl('',Validators.required),
-  descripcion: new FormControl('',Validators.required),
-  creditosMinimos: new FormControl('',Validators.required),
+  nombre: new FormControl(''),
+  descripcion: new FormControl(''),
+  creditosMinimos: new FormControl(''),
 });
 
 //Para editar la funcion 

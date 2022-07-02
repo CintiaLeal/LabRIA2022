@@ -24,16 +24,17 @@ export class NoticiasComponent implements OnInit {
   public base64Image: any;
   
   editarNoticiaForm = new FormGroup({
-    titulo: new FormControl('', Validators.required),
-    descripcion: new FormControl('', Validators.required)
+    titulo: new FormControl(''),
+    descripcion: new FormControl(''),
+    fechaCaducidad: new FormControl('')
   });
 
   nuevaNoticiaForm = new FormGroup({
-    id: new FormControl('', Validators.required),
-    titulo: new FormControl('', Validators.required),
-    descripcion: new FormControl('', Validators.required),
-    imagen: new FormControl('', Validators.required),
-    fechaCaducidad: new FormControl('', Validators.required)
+    id: new FormControl(''),
+    titulo: new FormControl(''),
+    descripcion: new FormControl(''),
+    imagen: new FormControl(''),
+    fechaCaducidad: new FormControl('')
   });
 
   constructor(private api: NoticiasService, private alerta: MatSnackBar) {
@@ -77,7 +78,8 @@ export class NoticiasComponent implements OnInit {
 
   //type file
   onFileSelected(event: any): void {
-    this.selectedFile = event.target.files[0] ?? null;
+   // this.selectedFile = event.target.files[0] ?? null;
+    this.convertToBase64(event.target.files[0]);
   }
   exampleFlag = false; // set it to false initially so box is not disabled
 
@@ -98,10 +100,10 @@ export class NoticiasComponent implements OnInit {
   editarNoticia(Noticia: any) {
     let x: Noticia = {
       id: Noticia.id,
-      titulo: this.editarNoticiaForm.controls["titulo"].value ? this.editarNoticiaForm.controls["titulo"].value : " ",
-      descripcion: this.editarNoticiaForm.controls["descripcion"].value ? this.editarNoticiaForm.controls["descripcion"].value : " ",
+      titulo: this.editarNoticiaForm.controls["titulo"].value ? this.editarNoticiaForm.controls["titulo"].value : Noticia.titulo,
+      descripcion: this.editarNoticiaForm.controls["descripcion"].value ? this.editarNoticiaForm.controls["descripcion"].value : Noticia.descripcion,
       imagen: "Noticia.img",
-      fechaCaducidad: Noticia.fechaCaducidad,
+      fechaCaducidad: this.editarNoticiaForm.controls["fechaCaducidad"].value ? this.editarNoticiaForm.controls["fechaCaducidad"].value : Noticia.fechaCaducidad
     }
     this.api.editarNoticia(x).subscribe(data => {
       console.log(data);
@@ -112,7 +114,7 @@ export class NoticiasComponent implements OnInit {
 
   //*funcion nueva*
   onNueva() {
-    this.convertToBase64(this.selectedFile)
+    
     console.log(this.base64Image)
     let x: Noticia = {
       id: "0",
@@ -122,7 +124,7 @@ export class NoticiasComponent implements OnInit {
       fechaCaducidad: this.nuevaNoticiaForm.controls["fechaCaducidad"].value ? this.nuevaNoticiaForm.controls["fechaCaducidad"].value : "",
     }
     console.log(x);
-
+    console.log(x.imagen);
     this.api.nuevaNoticia(x).subscribe(data => {
       console.log(data);
     });
@@ -131,6 +133,7 @@ export class NoticiasComponent implements OnInit {
   }
 
   convertToBase64(file: File) {
+    console.log(file);
     const observable = new Observable((subscriber: Subscriber<any>) => {
       this.readFile(file, subscriber);
     })
