@@ -1,0 +1,17 @@
+#grid-container {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  padding: 10px;
+  gap: 10px;
+  margin: auto;
+}
+
+.card {
+  box-shadow: 5px 10px 8px #888888;
+  height: 300px;
+  padding: 30px;
+}
+
+img {
+  max-height: 250px;
+}

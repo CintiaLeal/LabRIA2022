@@ -33,6 +33,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTableModule} from '@angular/material/table';
 import { InterceptorService } from './interceptores/interceptor.service';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { VerDocumentosComponent } from './Page/ver-documentos/ver-documentos.component';
 //import {IvyCarouselModule} from 'angular-responsive-carousel';
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     UnidadcurricularadminComponent,
     MateriasuserComponent,
     UnidadCurricularUsuarioComponent,
-    DocumentoadminComponent
+    DocumentoadminComponent,
+    VerDocumentosComponent
   ],
   imports: [
     HttpClientModule,
