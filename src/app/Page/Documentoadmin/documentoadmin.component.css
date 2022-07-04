@@ -6,6 +6,15 @@
     margin-top: 12px;
 }
 
+mat-panel-description {
+    justify-content: right;
+    align-items: center;
+}
+
+mat-form-field {
+    width: 750px;
+}
+
 .Centrartitulo {
     width: 100%;
     position: relative;
@@ -26,7 +35,21 @@ h1 {
 }
 
 mat-form-field {
-    width: 40%;
+    width: 800px;
+}
+
+.Centrardiv {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    margin-top: 10%;
+    width: 22%;
+    color: black;
+    background-color: #098A9A;
 }
 
 @keyframes rotation {
@@ -47,9 +70,6 @@ mat-form-field {
         animation: rotation 8s infinite linear;
         width: 60px;
         height: 60px;
-    }
-    mat-stepper {
-        orientation: "vertical";
     }
     .orientacion {
         orientation: vertical;

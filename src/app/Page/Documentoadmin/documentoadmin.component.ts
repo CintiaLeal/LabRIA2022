@@ -1,31 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { DocumentosService } from 'src/app/servicios/documentos.service';
 import { Documento } from 'src/app/modelos/documentos';
 import { Observable, subscribeOn, Subscriber } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 interface Tipo {
   value: string;
   viewValue: string;
 }
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+
+
 @Component({
   selector: 'app-documentoadmin',
   templateUrl: './documentoadmin.component.html',
@@ -33,23 +19,49 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class DocumentoadminComponent  {
   public base64Image: any;
+
+  panelOpenState = false;
   public documentosIF:Documento[] =[];
   public documentosOL:Documento[] =[];
   public documentosDI:Documento[] =[];
-  tipos: Tipo[] = [
-    {value: '0', viewValue: 'INFORMACION_CARRERA'},
-    {value: '1', viewValue: 'OPORTUNIDADES_LABORALES'},
-    {value: '2', viewValue: 'DATOS_DE_INTERES'},
-  ];
-  firstFormGroup = this._formBuilder.group({
-    firstCtrl: ['', Validators.required],
-  });
-  secondFormGroup = this._formBuilder.group({
-    secondCtrl: ['', Validators.required],
-  });
   isLinear = false;
+  checked = false;
 
-  constructor(private _formBuilder: FormBuilder,private service:DocumentosService) { }
+  tipos: Tipo[] = [
+    {value: 'INFORMACION_CARRERA', viewValue: 'INFORMACION_CARRERA'},
+    {value: 'OPORTUNIDADES_LABORALES', viewValue: 'OPORTUNIDADES_LABORALES'},
+    {value: 'DATOS_DE_INTERES', viewValue: 'DATOS_DE_INTERES'},
+  ];
+  toppings = this._formBuilder.group({
+    pepperoni: false,
+    extracheese: false,
+    mushroom: false,
+  });
+  activa: Tipo[] = [
+    {value: 'true', viewValue: 'ACTIVA'},
+    {value: 'false', viewValue: 'NO ACTIVA'}
+    
+  ];
+//Para hacer la funcion onNueva
+nuevaForm = new FormGroup({
+  titulo: new FormControl(''),
+  tipo: new FormControl(''),
+  documentoPDF: new FormControl(''),
+ 
+  imagen: new FormControl(''),
+});
+
+//Edita
+editarForm = new FormGroup({
+  titulo: new FormControl(''),
+  tipo: new FormControl(''),
+  documentoPDF: new FormControl(''),
+  activo: new FormControl(''),
+  a: new FormControl(false),
+  imagen: new FormControl('')
+});
+
+  constructor(private _formBuilder: FormBuilder,private service:DocumentosService,private alerta: MatSnackBar) { }
 
   ngOnInit(): void {
     this.service.getDocumentoIC().subscribe({
@@ -65,11 +77,6 @@ export class DocumentoadminComponent  {
       error: err => { alert('Error al cargar los documentos: ' + err) }
     });
   }
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
-  checked = false;
-
-
   
   convertToBase64(file: File) {
     console.log(file);
@@ -96,8 +103,48 @@ export class DocumentoadminComponent  {
   }
   
   onFileSelected(event: any): void {
-    // this.selectedFile = event.target.files[0] ?? null;
      this.convertToBase64(event.target.files[0]);
    }
   
+  
+   onNueva() {
+    let x: Documento = {
+      id:"0",
+      titulo: this.nuevaForm.controls["titulo"].value ? this.nuevaForm.controls["titulo"].value : " ",
+      tipo: this.nuevaForm.controls["tipo"].value ? this.nuevaForm.controls["tipo"].value : " ",
+      documentoPDF: this.base64Image ? this.base64Image : " ",
+      activo: true,
+    }
+    console.log(x);
+    console.log(x.documentoPDF);
+    this.service.nueva(x).subscribe(data => {
+      console.log(data);
+    });
+    this.alerta.open("Creada con éxito", "OK!");
+    this.ngOnInit();
+  }
+
+  
+
+  onEditar(x : Documento){
+    console.log("aca");
+    console.log(this.editarForm.controls["a"].value);
+    let m: Documento = {
+      id:x.id,
+      titulo: this.editarForm.controls["titulo"].value ? this.editarForm.controls["titulo"].value :x.titulo,
+      tipo: this.editarForm.controls["tipo"].value ? this.editarForm.controls["tipo"].value : x.tipo,
+      documentoPDF: this.base64Image ? this.base64Image : x.documentoPDF,
+      activo: true,
+    }
+    console.log(m);
+    this.service.editar(m).subscribe(data => {
+      console.log(data);
+    });
+    this.alerta.open("Editado con éxito", "OK!");
+    this.ngOnInit();
+  }
+ 
+  activar(x: any){
+
+  }
 }

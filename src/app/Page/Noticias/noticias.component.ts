@@ -114,7 +114,6 @@ export class NoticiasComponent implements OnInit {
 
   //*funcion nueva*
   onNueva() {
-    
     console.log(this.base64Image)
     let x: Noticia = {
       id: "0",

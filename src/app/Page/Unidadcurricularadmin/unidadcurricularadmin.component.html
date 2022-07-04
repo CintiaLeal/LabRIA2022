@@ -5,92 +5,173 @@
     </div>
     <mat-tab-group mat-align-tabs="start">
         <mat-tab label="Nueva">
-            <div>
+            <div class="Centrardiveditar">
                 <form [formGroup]="nuevaUCForm" class="example-form">
-                    <div>
-                        <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Id</mat-label>
-                            <input formControlName="id" matInput>
-                        </mat-form-field>
-                    </div>
-                    <div>
-                        <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Nombre</mat-label>
-                            <input formControlName="nombre" matInput>
-                        </mat-form-field>
-                    </div>
-                    <div>
-                        <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Descripcion</mat-label>
-                            <input formControlName="descripcion" matInput>
-                        </mat-form-field>
-                    </div>
-                    <div>
-                        <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Creditos</mat-label>
-                            <input formControlName="creditos" matInput>
-                        </mat-form-field>
-                    </div>
-                    <div>
-                        <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Documento</mat-label>
-                            <input formControlName="documento" matInput>
-                        </mat-form-field>
-                    </div>
-                    <div>
-                        <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Semestre</mat-label>
-                            <input formControlName="semestre" matInput>
-                        </mat-form-field>
-                    </div>
-                    <div *ngIf="materias.length>0">
-                        <mat-form-field appearance="fill">
-                            <mat-label>Seleccione la Materia</mat-label>
-                            <mat-select formControlName="materia">
-                                <mat-option *ngFor="let x of materias" [value]="x.id">
-                                    {{x.nombre}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                    <div *ngIf="unidadesC.length>0">
-                        <mat-form-field appearance="fill">
-                            <mat-label>EXAMEN</mat-label>
-                            <mat-select formControlName="unidadCpreviaExamen" multiple>
-                                <mat-select-trigger>
-                                    {{unidadesControl.value?.[0] || ''}}
-                                    <span *ngIf="(unidadesControl.value?.length || 0) > 1" class="list">
+                    <div class="divPrincipal">
+                        <div class="div">
+                            <div>
+                                <mat-form-field style="margin-left: 10%; margin-right: 10%;" class="example-full-width" appearance="fill">
+                                    <mat-label>Id</mat-label>
+                                    <input formControlName="id" matInput>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field style="margin-left: 10%; margin-right: 10%;" class="example-full-width" appearance="fill">
+                                    <mat-label>Nombre</mat-label>
+                                    <input formControlName="nombre" matInput>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field style="margin-left: 10%; margin-right: 10%;" class="example-full-width" appearance="fill">
+                                    <mat-label>Descripción</mat-label>
+                                    <input formControlName="descripcion" matInput>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field style="margin-left: 10%; margin-right: 10%;" class="example-full-width" appearance="fill">
+                                    <mat-label>Créditos</mat-label>
+                                    <input formControlName="creditos" matInput>
+                                </mat-form-field>
+                            </div>
+
+                            <div>
+                                <mat-form-field style="margin-left: 10%; margin-right: 10%;" class="example-full-width" appearance="fill">
+                                    <mat-label>Documento</mat-label>
+                                    <input formControlName="documento" matInput>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="div">
+                            <div>
+                                <mat-form-field style="margin-left: 10%; margin-right: 10%;" class="example-full-width" appearance="fill">
+                                    <mat-label>Semestre</mat-label>
+                                    <input formControlName="semestre" matInput>
+                                </mat-form-field>
+                            </div>
+                            <div *ngIf="materias.length>0">
+                                <mat-form-field style="margin-left: 10%; margin-right: 10%;" appearance="fill">
+                                    <mat-label>Seleccione la Materia</mat-label>
+                                    <mat-select formControlName="materia">
+                                        <mat-option *ngFor="let x of materias" [value]="x.id">
+                                            {{x.nombre}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div *ngIf="unidadesC.length>0">
+                                <mat-form-field style="margin-left: 10%; margin-right: 10%;" appearance="fill">
+                                    <mat-label>EXAMEN</mat-label>
+                                    <mat-select formControlName="unidadCpreviaExamen" multiple>
+                                        <mat-select-trigger>
+                                            {{unidadesControl.value?.[0] || ''}}
+                                            <span *ngIf="(unidadesControl.value?.length || 0) > 1" class="list">
                                       (+{{(unidadesControl.value?.length || 0) - 1}} {{unidadesControl.value?.length === 2 ? 'other' : 'others'}})
                                     </span>
-                                </mat-select-trigger>
-                                <mat-option *ngFor="let topping of unidadesC" [value]="topping.id">{{topping.nombre}}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                    <div *ngIf="unidadesC.length>0">
-                        <mat-form-field appearance="fill">
-                            <mat-label>CURSO</mat-label>
-                            <mat-select formControlName="unidadCpreviaCurso" multiple>
-                                <mat-select-trigger>
-                                    {{unidadesControl.value?.[0] || ''}}
-                                    <span *ngIf="(unidadesControl.value?.length || 0) > 1" class="list">
+                                        </mat-select-trigger>
+                                        <mat-option *ngFor="let topping of unidadesC" [value]="topping.id">{{topping.nombre}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div *ngIf="unidadesC.length>0">
+                                <mat-form-field style="margin-left: 10%; margin-right: 10%;" appearance="fill">
+                                    <mat-label>CURSO</mat-label>
+                                    <mat-select formControlName="unidadCpreviaCurso" multiple>
+                                        <mat-select-trigger>
+                                            {{unidadesControl.value?.[0] || ''}}
+                                            <span *ngIf="(unidadesControl.value?.length || 0) > 1" class="list">
                                       (+{{(unidadesControl.value?.length || 0) - 1}} {{unidadesControl.value?.length === 2 ? 'other' : 'others'}})
                                     </span>
-                                </mat-select-trigger>
-                                <mat-option *ngFor="let topping of unidadesC" [value]="topping.id">{{topping.nombre}}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
+                                        </mat-select-trigger>
+                                        <mat-option *ngFor="let topping of unidadesC" [value]="topping.id">{{topping.nombre}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="Centrartitulo">
+                                <button class="button" (click)="nuevaUC()" mat-button>Listo</button>
+                            </div>
+                        </div>
                     </div>
-                    <button (click)="nuevaUC()" mat-button>Listo</button>
                 </form>
             </div>
         </mat-tab>
-        <mat-tab label="Eliminar">
+        <mat-tab label="Editar">
+            <div class="Centrardiv">
+                <div class="Centrardiveditar">
+                    <div *ngFor="let x of unidadesC">
+                        <mat-accordion>
+                            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <h2>{{x.nombre}}</h2>
+                                    </mat-panel-title>
+                                    <mat-panel-description>
+                                        Ver {{panelOpenState ? '-' : '+'}}
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <div>
+                                    <h4>ID : {{x.id}}</h4>
+                                </div>
+                                <div>
+                                    <form [formGroup]="editarUCForm" class="example-form">
+                                        <mat-form-field class="example-full-width" appearance="fill">
+                                            <mat-label>Nombre</mat-label>
+                                            <input placeholder={{x.nombre}} value={{x.nombre}} formControlName="nombre" matInput>
+                                        </mat-form-field>
+                                        <mat-form-field class="example-full-width" appearance="fill">
+                                            <mat-label>Descripción</mat-label>
+                                            <input placeholder={{x.descripcion}} value={{x.descripcion}} formControlName="descripcion" matInput>
+                                        </mat-form-field>
+                                        <mat-form-field class="example-full-width" appearance="fill">
+                                            <mat-label>Créditos</mat-label>
+                                            <input placeholder={{x.creditos}} value={{x.creditos}} formControlName="creditos" matInput>
+                                        </mat-form-field>
+                                        <mat-form-field class="example-full-width" appearance="fill">
+                                            <mat-label>Semestre</mat-label>
+                                            <input placeholder={{x.semestre}} value={{x.semestre}} formControlName="semestre" matInput>
+                                        </mat-form-field>
+                                        <mat-form-field class="example-full-width" appearance="fill">
+                                            <mat-label>Documento</mat-label>
+                                            <input placeholder={{x.documento}} value={{x.documento}} formControlName="documento" matInput>
+                                        </mat-form-field>
+                                        <div *ngIf="materias.length>0">
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Seleccione la Materia</mat-label>
+                                                <mat-select formControlName="materia">
+                                                    <mat-option *ngFor="let x of materias" [value]="x.id">
+                                                        {{x.nombre}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div *ngIf="unidadesC.length>0">
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>CURSO</mat-label>
+                                                <mat-select formControlName="unidadCpreviaCurso" multiple>
+                                                    <mat-select-trigger>
+                                                        {{unidadesControl.value?.[0] || ''}}
+                                                        <span *ngIf="(unidadesControl.value?.length || 0) > 1" class="list">
+                                                  (+{{(unidadesControl.value?.length || 0) - 1}} {{unidadesControl.value?.length === 2 ? 'other' : 'others'}})
+                                                </span>
+                                                    </mat-select-trigger>
+                                                    <mat-option *ngFor="let topping of unidadesC" [value]="topping.id">{{topping.nombre}}</mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                    </form>
+                                </div>
 
+                                <button (click)="eliminarUC(x.id)" mat-icon-button color="warn">
+                                <mat-icon>delete</mat-icon>
+                                </button>
+                                <button (click)="editarUC(x)" mat-icon-button color="black">
+                                <mat-icon>editar</mat-icon>
+                                </button>
+
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                    </div>
+                </div>
+            </div>
         </mat-tab>
-        <mat-tab label="Informacíon">
-
-        </mat-tab>
-
     </mat-tab-group>
 </body>

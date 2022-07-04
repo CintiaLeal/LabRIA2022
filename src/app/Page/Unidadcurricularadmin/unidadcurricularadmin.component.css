@@ -11,19 +11,54 @@ h1 {
     font-size: 60px;
 }
 
+.divPrincipal {
+    display: flex;
+}
+
+.Centrardiveditar {
+    width: 800px;
+}
+
+form {
+    width: 100%;
+}
+
 .rotate {
     animation: rotation 8s infinite linear;
     width: 100px;
     height: 100px;
 }
 
+.div {
+    width: 100%;
+    margin-right: 5%;
+}
+
+mat-panel-description {
+    justify-content: right;
+    align-items: center;
+}
+
 mat-form-field {
-    width: 800px;
+    width: 750px;
+}
+
+.button {
+    width: 22%;
+    color: black;
+    background-color: #098A9A;
 }
 
 .list {
     opacity: 0.75;
     font-size: 0.75em;
+}
+
+.Centrardiv {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @keyframes rotation {
@@ -55,5 +90,18 @@ mat-form-field {
         animation: rotation 8s infinite linear;
         width: 60px;
         height: 60px;
+    }
+    .divPrincipal {
+        display: grid;
+        width: 100%;
+    }
+    .div {
+        width: 80%;
+    }
+    mat-form-field {
+        width: 100%;
+    }
+    .Centrardiveditar {
+        width: 100%;
     }
 }

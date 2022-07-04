@@ -8,13 +8,14 @@ import { Materia } from 'src/app/modelos/Materia';
 import { PreviaUC } from 'src/app/modelos/Previa';
 import { UnidadesCurriculares } from 'src/app/modelos/unidadesCurriculares';
 import { PreviaAdd } from 'src/app/modelos/previaAdd';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-unidadcurricularadmin',
   templateUrl: './unidadcurricularadmin.component.html',
   styleUrls: ['./unidadcurricularadmin.component.css']
 })
 export class UnidadcurricularadminComponent {
-  
+  panelOpenState = false;
   //Para listar Materias
   public materias: Materia[] = [];
   //
@@ -31,9 +32,20 @@ export class UnidadcurricularadminComponent {
     unidadCpreviaCurso: new FormControl([], Validators.required),
     unidadCpreviaExamen: new FormControl([], Validators.required)
   });
+  //Para editar la funcion 
+  editarUCForm = new FormGroup({
+    nombre: new FormControl(''),
+    descripcion: new FormControl(''),
+    creditos: new FormControl(''),
+    documento: new FormControl(''),
+    semestre: new FormControl(''),
+    materia: new FormControl(''),
+    unidadCpreviaCurso: new FormControl([]),
+    unidadCpreviaExamen: new FormControl([])
+  });
   public unidadesControl = new FormControl("");
 
-  constructor(public dialog: MatDialog, private serviceM: MateriaService,private serviceU: UnidadesCurricularesService) {}
+  constructor(private alerta: MatSnackBar, private serviceM: MateriaService,private serviceU: UnidadesCurricularesService) {}
 
   ngOnInit(): void {
     this.serviceM.getMaterias().subscribe({
@@ -45,18 +57,12 @@ export class UnidadcurricularadminComponent {
       error: err => { alert('Error al cargar las noticias: ' + err) }
     });
   }
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(DialogAnimationsExampleDialog, {
-      width: '250px',
-     
-      exitAnimationDuration,
-    });
-  }
+ 
   //nueva funcion
   nuevaUC(){
     let previa: PreviaAdd[] = [];
 
-    let auxPrevia = this.nuevaUCForm.value.unidadCpreviaCurso ? this.nuevaUCForm.value.unidadCpreviaCurso: [];
+   let auxPrevia = this.nuevaUCForm.value.unidadCpreviaCurso ? this.nuevaUCForm.value.unidadCpreviaCurso: [];
 
     for(let i=0;i< auxPrevia.length;i++){
      previa.push(new PreviaAdd(this.nuevaUCForm.value.id ? this.nuevaUCForm.value.id:"",auxPrevia[i],"CURSO"));
@@ -91,8 +97,6 @@ export class UnidadcurricularadminComponent {
       previas: []
     }
     console.log(x);
-
-
     this.serviceU.nuevaUC(x).subscribe(d => {
       previa.forEach(element => {
         this.serviceU.addPrevia(element).subscribe(e=>{
@@ -100,18 +104,61 @@ export class UnidadcurricularadminComponent {
         });
       });
     });
-    
+    this.alerta.open("Creado con éxito", "OK!");
 
   }
 
+  eliminarUC(x:any){
+    this.ngOnInit();
+    this.serviceU.eliminarUC(x).subscribe(data => {
+      console.log(data);
+    });
+    this.alerta.open("Eliminado con éxito", "OK!");
+    this.ngOnInit();
+  }
+
+  editarUC(UC: UnidadesCurriculares){
+    let form = this.editarUCForm;
+    //let previa: PreviaAdd[] = [];
+    //Materia
+    let mid =  form.controls["materia"].value;
+    let materia: any;
+    for(let i=0;i<this.materias.length; i++){
+      if (this.materias[i].id == mid){
+        materia = this.materias[i];
+      }
+    }
+/*
+    let auxPrevia = this.editarUCForm.value.unidadCpreviaCurso ? this.editarUCForm.value.unidadCpreviaCurso: [];
+
+    for(let i=0;i< auxPrevia.length;i++){
+     previa.push(new PreviaAdd(this.editarUCForm.value.id ? this.editarUCForm.value.id:"",auxPrevia[i],"CURSO"));
+    }
+
+    for(let i=0;i< auxPrevia.length;i++){
+     previa.push(new PreviaAdd(this.editarUCForm.value.id ? this.editarUCForm.value.id:"",auxPrevia[i],"EXAMEN"));
+    }
+
+*/
+    let x: UnidadesCurriculares = {
+      id: UC.id,
+      nombre: form.controls["nombre"].value ?  form.controls["nombre"].value: UC.nombre,
+      descripcion: form.controls["descripcion"].value ?  form.controls["descripcion"].value: UC.descripcion,
+      creditos: form.controls["creditos"].value ?  form.controls["creditos"].value: UC.creditos,
+      documento: form.controls["documento"].value ?  form.controls["documento"].value: UC.documento,
+      semestre: form.controls["semestre"].value ?  form.controls["semestre"].value: UC.semestre,
+      materia: UC.materia,
+      previas: UC.previas
+    }
+
+    
+    this.serviceU.editarUC(x).subscribe(data => {
+      console.log(data);
+    });
+    this.alerta.open("Editado con éxito", "OK!");
+    this.ngOnInit();
+  } 
+  
 }
 
-@Component({
-  selector: 'dialog-animations-example-dialog',
-  templateUrl: 'dialog-animations-example-dialog.html',
-})
 
-
-export class DialogAnimationsExampleDialog {
-  constructor(public dialogRef: MatDialogRef<DialogAnimationsExampleDialog>) {}
-}

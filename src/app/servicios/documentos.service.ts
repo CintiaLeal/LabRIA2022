@@ -8,7 +8,7 @@ import { Documento } from "../modelos/documentos";
 
 export class DocumentosService {
 
-  url: string = "https://ria2022.test.softtero.com/api";
+  url: string = "https://gr1-ria2022.test.softtero.com/api";
   constructor(private http: HttpClient) { }
 
   getDocumentoIC() {
@@ -26,4 +26,13 @@ export class DocumentosService {
     return this.http.get<Documento[]>(this.url + '/Documentos/Activos?tipo='+ x);
   }
 
+  nueva(form:Documento){
+    let direccion = this.url + "/Documentos";
+    return this.http.post(direccion, form);
+  }
+  
+  editar(x:any){
+    let direccion = this.url + "/Documentos/" + x.id;
+    return this.http.put(direccion, x);
+  }
 }

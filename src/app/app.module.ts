@@ -34,6 +34,7 @@ import {MatTableModule} from '@angular/material/table';
 import { InterceptorService } from './interceptores/interceptor.service';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { VerDocumentosComponent } from './Page/ver-documentos/ver-documentos.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 //import {IvyCarouselModule} from 'angular-responsive-carousel';
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { VerDocumentosComponent } from './Page/ver-documentos/ver-documentos.com
     MatSelectModule,
     MatCheckboxModule,
     MatTableModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSlideToggleModule
     //IvyCarouselModule
   ],
   providers: [ {

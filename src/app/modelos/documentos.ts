@@ -3,9 +3,9 @@ export class Documento {
     public titulo: string;
     public tipo: string;
     public documentoPDF: string;
-    public activo: string;
+    public activo: boolean;
   
-    constructor(id: string, titulo: string, tipo: string, documentoPDF: string, activo: string) {
+    constructor(id: string, titulo: string, tipo: string, documentoPDF: string, activo: boolean) {
       this.id = id;
       this.titulo = titulo;
       this.tipo = tipo;
