@@ -1,1 +1,77 @@
-<p>ver-documentos works!</p>
+<body>
+    <div class="Centrartitulo">
+        <img src="/assets/img/logo.jpg" class="rotate" />
+        <h1>DOCUMENTOS INTERES </h1>
+    </div>
+    <mat-tab-group>
+        <mat-tab label="OPORTUNIDADES LABORALES">
+            <div *ngFor="let x of documentosOL">
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <h2>{{x.titulo}}</h2>
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Ver {{panelOpenState ? '-' : '+'}}
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <p>ID DEL DOCUMENTO: {{x.id}}</p>
+                    <button class="button">
+                        <a download='Documento'  title='Descargar'>
+                            Descargar PDF
+                        </a>
+                    </button>
+                </mat-expansion-panel>
+            </div>
+        </mat-tab>
+
+        <mat-tab label="INFORMACION CARRERA">
+            <div *ngFor="let x of documentosIF">
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <h2>{{x.titulo}}</h2>
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Ver {{panelOpenState ? '-' : '+'}}
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <p>ID DEL DOCUMENTO: {{x.id}}</p>
+                    <button class="button">
+                        <a download='Documento'  title='Descargar'>
+                            Descargar PDF
+                        </a>
+                    </button>
+                </mat-expansion-panel>
+            </div>
+        </mat-tab>
+        <mat-tab label="DATOS DE INTERES">
+            <div *ngFor="let x of documentosDI">
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <h2>{{x.titulo}}</h2>
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Ver {{panelOpenState ? '-' : '+'}}
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <p>ID DEL DOCUMENTO: {{x.id}}</p>
+                    <button class="button">
+                        <a download='Documento'  title='Descargar'>
+                            Descargar PDF
+                        </a>
+                    </button>
+                </mat-expansion-panel>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</body>
+<script>
+    var obj = document.createElement('object');
+    obj.style.width = '100%';
+    obj.style.height = '842pt';
+    obj.type = 'application/pdf';
+    obj.data = document.getElementsById("pdf").value;
+    document.body.appendChild(obj);
+</script>
