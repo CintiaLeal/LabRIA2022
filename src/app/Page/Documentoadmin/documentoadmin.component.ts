@@ -144,7 +144,5 @@ editarForm = new FormGroup({
     this.ngOnInit();
   }
  
-  activar(x: any){
-
-  }
+  
 }
