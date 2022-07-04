@@ -16,6 +16,8 @@ export class VerDocumentosComponent implements OnInit {
   public documentosDI:Documento[] =[];
   public base64Image: any;
   panelOpenState = false;
+
+
   constructor(private _formBuilder: FormBuilder,private service:DocumentosService,private alerta: MatSnackBar) { }
 
   ngOnInit(): void {
@@ -60,5 +62,17 @@ export class VerDocumentosComponent implements OnInit {
   onFileSelected(event: any): void {
      this.convertToBase64(event.target.files[0]);
    }
-  
+
+   pdf(x: string){
+    let aux = x.substring(28)
+    //console.log(x);
+    console.log(aux);
+    const source = `data:application/pdf;base64,${aux}`;
+    const link = document.createElement("a");
+    link.href = source;
+    link.download = `Documento.pdf`
+    link.click();
+   return aux;
+   }
+
 }

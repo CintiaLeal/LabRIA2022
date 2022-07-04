@@ -5,7 +5,7 @@
     </div>
     <mat-tab-group>
         <mat-tab label="OPORTUNIDADES LABORALES">
-            <div *ngFor="let x of documentosOL">
+            <div *ngFor="let x of documentosOL; let i = index ">
                 <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                     <mat-expansion-panel-header>
                         <mat-panel-title>
@@ -16,10 +16,8 @@
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <p>ID DEL DOCUMENTO: {{x.id}}</p>
-                    <button class="button">
-                        <a download='Documento'  title='Descargar'>
-                            Descargar PDF
-                        </a>
+                    <button class="button" download='Documento' (click)="pdf(x.documentoPDF)" title='Descargar'>
+                        Descargar
                     </button>
                 </mat-expansion-panel>
             </div>
@@ -37,10 +35,8 @@
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <p>ID DEL DOCUMENTO: {{x.id}}</p>
-                    <button class="button">
-                        <a download='Documento'  title='Descargar'>
-                            Descargar PDF
-                        </a>
+                    <button class="button" download='Documento' (click)="pdf(x.documentoPDF)" title='Descargar'>
+                        Descargar
                     </button>
                 </mat-expansion-panel>
             </div>
@@ -57,10 +53,8 @@
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <p>ID DEL DOCUMENTO: {{x.id}}</p>
-                    <button class="button">
-                        <a download='Documento'  title='Descargar'>
-                            Descargar PDF
-                        </a>
+                    <button class="button" download='Documento' (click)="pdf(x.documentoPDF)" title='Descargar'>
+                        Descargar
                     </button>
                 </mat-expansion-panel>
             </div>
@@ -68,10 +62,4 @@
     </mat-tab-group>
 </body>
 <script>
-    var obj = document.createElement('object');
-    obj.style.width = '100%';
-    obj.style.height = '842pt';
-    obj.type = 'application/pdf';
-    obj.data = document.getElementsById("pdf").value;
-    document.body.appendChild(obj);
 </script>

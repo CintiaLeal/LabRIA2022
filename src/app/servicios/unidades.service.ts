@@ -40,4 +40,8 @@ export class UnidadesCurricularesService {
     return this.http.put(direccion, x);
   }
  
+  eliminarPrevia(x:any){
+    let direccion = "https://gr1-ria2022.test.softtero.com/api/Previas/"+x;
+    return this.http.delete(direccion)
+  }
 }

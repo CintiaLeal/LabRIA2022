@@ -9,12 +9,14 @@ import { PreviaUC } from 'src/app/modelos/Previa';
 import { UnidadesCurriculares } from 'src/app/modelos/unidadesCurriculares';
 import { PreviaAdd } from 'src/app/modelos/previaAdd';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable, subscribeOn, Subscriber } from 'rxjs';
 @Component({
   selector: 'app-unidadcurricularadmin',
   templateUrl: './unidadcurricularadmin.component.html',
   styleUrls: ['./unidadcurricularadmin.component.css']
 })
 export class UnidadcurricularadminComponent {
+  public base64Image: any;
   panelOpenState = false;
   //Para listar Materias
   public materias: Materia[] = [];
@@ -53,7 +55,7 @@ export class UnidadcurricularadminComponent {
       error: err => { alert('Error al cargar las noticias: ' + err) }
     });
     this.serviceU.getUnidades().subscribe({
-      next: value => this.unidadesC = value,
+      next: value =>this.unidadesC = value,    
       error: err => { alert('Error al cargar las noticias: ' + err) }
     });
   }
@@ -62,7 +64,7 @@ export class UnidadcurricularadminComponent {
   nuevaUC(){
     let previa: PreviaAdd[] = [];
 
-   let auxPrevia = this.nuevaUCForm.value.unidadCpreviaCurso ? this.nuevaUCForm.value.unidadCpreviaCurso: [];
+    let auxPrevia = this.nuevaUCForm.value.unidadCpreviaCurso ? this.nuevaUCForm.value.unidadCpreviaCurso: [];
 
     for(let i=0;i< auxPrevia.length;i++){
      previa.push(new PreviaAdd(this.nuevaUCForm.value.id ? this.nuevaUCForm.value.id:"",auxPrevia[i],"CURSO"));
@@ -118,8 +120,8 @@ export class UnidadcurricularadminComponent {
   }
 
   editarUC(UC: UnidadesCurriculares){
-    let form = this.editarUCForm;
-    //let previa: PreviaAdd[] = [];
+    let form = this.editarUCForm;  
+    let previas: PreviaAdd[] = [];
     //Materia
     let mid =  form.controls["materia"].value;
     let materia: any;
@@ -128,18 +130,26 @@ export class UnidadcurricularadminComponent {
         materia = this.materias[i];
       }
     }
-/*
+
+    let previa = [];
+    console.log(UC.previas);
+
+    UC.previas.forEach(x=>this.serviceU.eliminarPrevia(x.id).subscribe());
+     
+    
+    
+  
     let auxPrevia = this.editarUCForm.value.unidadCpreviaCurso ? this.editarUCForm.value.unidadCpreviaCurso: [];
 
     for(let i=0;i< auxPrevia.length;i++){
-     previa.push(new PreviaAdd(this.editarUCForm.value.id ? this.editarUCForm.value.id:"",auxPrevia[i],"CURSO"));
+     previas.push(new PreviaAdd(UC.id, auxPrevia[i],"CURSO"));
     }
 
     for(let i=0;i< auxPrevia.length;i++){
-     previa.push(new PreviaAdd(this.editarUCForm.value.id ? this.editarUCForm.value.id:"",auxPrevia[i],"EXAMEN"));
+     previas.push(new PreviaAdd(UC.id, auxPrevia[i],"EXAMEN"));
     }
 
-*/
+
     let x: UnidadesCurriculares = {
       id: UC.id,
       nombre: form.controls["nombre"].value ?  form.controls["nombre"].value: UC.nombre,
@@ -147,18 +157,49 @@ export class UnidadcurricularadminComponent {
       creditos: form.controls["creditos"].value ?  form.controls["creditos"].value: UC.creditos,
       documento: form.controls["documento"].value ?  form.controls["documento"].value: UC.documento,
       semestre: form.controls["semestre"].value ?  form.controls["semestre"].value: UC.semestre,
-      materia: UC.materia,
-      previas: UC.previas
+      materia: materia ? materia: UC.materia,
+      previas: []
     }
 
-    
-    this.serviceU.editarUC(x).subscribe(data => {
-      console.log(data);
+    this.serviceU.editarUC(x).subscribe(d => {
+      previas.forEach(element => {
+        this.serviceU.addPrevia(element).subscribe(e=>{
+          console.log(e);
+        });
+      });
     });
     this.alerta.open("Editado con éxito", "OK!");
     this.ngOnInit();
   } 
+
+
+  convertToBase64(file: File) {
+    console.log(file);
+    const observable = new Observable((subscriber: Subscriber<any>) => {
+      this.readFile(file, subscriber);
+    })
+
+    observable.subscribe((d) => {
+      this.base64Image = d;
+    })
+  }
+
+  readFile(file: File, subscriber: Subscriber<any>) {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file)
+
+    fileReader.onload = () => {
+      subscriber.next(fileReader.result)
+      subscriber.complete()
+    }
+    fileReader.onerror = () => {
+      subscriber.error()
+    }
+  }
   
+  onFileSelected(event: any): void {
+     this.convertToBase64(event.target.files[0]);
+   }
 }
 
 
