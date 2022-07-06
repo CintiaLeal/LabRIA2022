@@ -1,39 +1,44 @@
 .divBack {
-  background-image: url("src/assets/img/nueva2.jpg");
-  height: 90vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#matTab {
-  width: 100vh;
-  background-color: rgba(233, 236, 239, .5);
-  height: 80vh;
-  border-radius: 10px;
-  box-shadow: 5px 5px 10px;
-}
-
-#div {
-  display: flex;
-  justify-content: center;
-}
-
-@media (max-width: 500px) {
-  .divBack {
-    width: 100%;
-    margin: 0;
-    padding: 0;
+    background-image: url("src/assets/img/nueva2.jpg");
+    height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
+}
 
-  #matTab {
-    width: 90%;
+#matTab {
+    width: 100vh;
     background-color: rgba(233, 236, 239, .5);
-    /* height: 80vh; */
+    height: 80vh;
     border-radius: 10px;
     box-shadow: 5px 5px 10px;
-  }
+}
+
+.button {
+    width: 22%;
+    color: black;
+    background-color: #098A9A;
+}
+
+#div {
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 500px) {
+    .divBack {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #matTab {
+        width: 90%;
+        background-color: rgba(233, 236, 239, .5);
+        /* height: 80vh; */
+        border-radius: 10px;
+        box-shadow: 5px 5px 10px;
+    }
 }

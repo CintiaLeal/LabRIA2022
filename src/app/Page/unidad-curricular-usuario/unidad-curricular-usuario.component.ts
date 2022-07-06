@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as e from 'express';
 import { UnidadesCurriculares } from 'src/app/modelos/unidadesCurriculares';
 import { UnidadesCurricularesService } from 'src/app/servicios/unidades.service';
-
+import { Observable, subscribeOn, Subscriber } from 'rxjs';
 @Component({
   selector: 'app-unidad-curricular-usuario',
   templateUrl: './unidad-curricular-usuario.component.html',
@@ -10,6 +10,7 @@ import { UnidadesCurricularesService } from 'src/app/servicios/unidades.service'
 })
 export class UnidadCurricularUsuarioComponent implements OnInit {
   public unidadesCurriculares: UnidadesCurriculares[] = [];
+  public base64Image: any;
   constructor(private api: UnidadesCurricularesService) { }
 
   ngOnInit(): void {
@@ -47,4 +48,43 @@ export class UnidadCurricularUsuarioComponent implements OnInit {
       this.unidadesCurriculares = aux;
     })
   }
+  convertToBase64(file: File) {
+    console.log(file);
+    const observable = new Observable((subscriber: Subscriber<any>) => {
+      this.readFile(file, subscriber);
+    })
+
+    observable.subscribe((d) => {
+      this.base64Image = d;
+    })
+  }
+
+  readFile(file: File, subscriber: Subscriber<any>) {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file)
+
+    fileReader.onload = () => {
+      subscriber.next(fileReader.result)
+      subscriber.complete()
+    }
+    fileReader.onerror = () => {
+      subscriber.error()
+    }
+  }
+  
+  onFileSelected(event: any): void {
+     this.convertToBase64(event.target.files[0]);
+   }
+
+  pdf(x: string){
+    let aux = x.substring(28)
+    //console.log(x);
+    console.log(aux);
+    const source = `data:application/pdf;base64,${aux}`;
+    const link = document.createElement("a");
+    link.href = source;
+    link.download = `Documento.pdf`
+    link.click();
+   return aux;
+   }
 }

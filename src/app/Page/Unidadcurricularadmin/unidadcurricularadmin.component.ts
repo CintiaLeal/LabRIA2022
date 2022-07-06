@@ -93,7 +93,7 @@ export class UnidadcurricularadminComponent {
       nombre: form.controls["nombre"].value ?  form.controls["nombre"].value: "",
       descripcion: form.controls["descripcion"].value ?  form.controls["descripcion"].value: "",
       creditos: form.controls["creditos"].value ?  form.controls["creditos"].value: "",
-      documento: form.controls["documento"].value ?  form.controls["documento"].value: "",
+      documento: this.base64Image ? this.base64Image : " ",
       semestre: form.controls["semestre"].value ?  form.controls["semestre"].value: "",
       materia: materia,
       previas: []
@@ -155,7 +155,7 @@ export class UnidadcurricularadminComponent {
       nombre: form.controls["nombre"].value ?  form.controls["nombre"].value: UC.nombre,
       descripcion: form.controls["descripcion"].value ?  form.controls["descripcion"].value: UC.descripcion,
       creditos: form.controls["creditos"].value ?  form.controls["creditos"].value: UC.creditos,
-      documento: form.controls["documento"].value ?  form.controls["documento"].value: UC.documento,
+      documento: this.base64Image ? this.base64Image : " ",
       semestre: form.controls["semestre"].value ?  form.controls["semestre"].value: UC.semestre,
       materia: materia ? materia: UC.materia,
       previas: []

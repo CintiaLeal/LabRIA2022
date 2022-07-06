@@ -1,44 +1,38 @@
 <div class="divBack">
-  <mat-tab-group id="matTab">
-    <mat-tab *ngFor="let unidad of unidadesCurriculares" label="{{unidad.nombre}}">
-      <div id="div">
-        <mat-tab-group id="all">
-          <mat-tab label="descripcion">
-            {{unidad.descripcion}}
-          </mat-tab>
+    <mat-tab-group id="matTab">
+        <mat-tab *ngFor="let unidad of unidadesCurriculares" label="{{unidad.nombre}}">
+            <div id="div">
+                <mat-tab-group id="all">
+                    <mat-tab label="descripcion">
+                        {{unidad.descripcion}}
+                    </mat-tab>
+                    <mat-tab label="Creditos">
+                        {{unidad.creditos}}
+                    </mat-tab>
+                    <mat-tab label="documento">
+                        <button class="button" download='Documento' (click)="pdf(unidad.documento)" title='Descargar'>
+                        Descargar
+                       </button>
+                    </mat-tab>
+                    <mat-tab label="Semestre">
+                        {{unidad.semestre}}
+                    </mat-tab>
+                    <mat-tab label="Materia">
+                        <div *ngFor="let p of unidad.materia">
 
-          <mat-tab label="Creditos">
-            {{unidad.creditos}}
-          </mat-tab>
+                            {{p}}
 
-          <mat-tab label="documento">
-            {{unidad.documento}}
-          </mat-tab>
+                        </div>
+                    </mat-tab>
 
-          <mat-tab label="Semestre">
-            {{unidad.semestre}}
-          </mat-tab>
+                    <mat-tab label="Previas">
+                        <div *ngFor="let previa of unidad.previas">
+                            Id: {{previa.id}}<br /> Previa: {{previa.previa}} <br /> Tipo previa: {{previa.tipoPrevia}} <br /> <br /> <br /><br /><br /><br />
+                        </div>
+                    </mat-tab>
 
-          <mat-tab label="Materia">
-            <div *ngFor="let p of unidad.materia">
-
-              {{p}}
-
+                </mat-tab-group>
             </div>
-            <!-- {{unidad.materia}} -->
-
-          </mat-tab>
-
-          <mat-tab label="Previas">
-            <div *ngFor="let previa of unidad.previas">
-              Id: {{previa.id}}<br />
-              Previa: {{previa.previa}} <br />
-              Tipo previa: {{previa.tipoPrevia}} <br /> <br /> <br /><br /><br /><br />
-            </div>
-          </mat-tab>
-
-        </mat-tab-group>
-      </div>
-    </mat-tab>
-  </mat-tab-group>
+        </mat-tab>
+    </mat-tab-group>
 </div>

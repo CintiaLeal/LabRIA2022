@@ -1,6 +1,7 @@
 <header>
 
 </header>
+
 <body class="divImg">
     <div class="Principal">
         <div class="Centrar">
@@ -11,24 +12,24 @@
                 </div>
             </div>
             <mat-card class="cardContenido">
-                <form  [formGroup]="loginForm"   > 
+                <form [formGroup]="loginForm">
                     <div class="centrarinput">
                         <div style="position: relative; z-index: index 2;">
                             <mat-form-field class="example-full-width" appearance="fill">
                                 <mat-label>Username</mat-label>
-                                <input type="username"  formControlName="username" matInput>
+                                <input type="username" formControlName="username" matInput>
                             </mat-form-field>
                         </div>
                         <div>
                             <mat-form-field class="example-full-width" appearance="fill">
                                 <mat-label>Password</mat-label>
-                                <input type="password" formControlName="password" matInput >
+                                <input type="password" formControlName="password" matInput>
                             </mat-form-field>
                         </div>
                         <div class="centrarbtn">
                             <button mat-raised-button type="submit" (click)="onLogin()">Login</button>
                         </div>
-                        <a routerLink="/registrar">Registar</a>
+
                     </div>
                 </form>
             </mat-card>
