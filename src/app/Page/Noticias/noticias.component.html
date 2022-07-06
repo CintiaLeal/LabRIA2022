@@ -65,6 +65,11 @@
                                                         <mat-label>Descripción</mat-label>
                                                         <input placeholder={{x.descripcion}} value={{x.descripcion}} formControlName="descripcion" matInput>
                                                     </mat-form-field>
+                                                    <div>
+                                                        <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+                                                        <input hidden (change)="onFileSelected($event)" #fileInput type="file" formControlName="imagen">
+                                                        <span class="file-name">{{selectedFile?.name}}</span>
+                                                    </div>
                                                     <mat-form-field class="example-full-width" appearance="fill">
                                                         <mat-label>Fecha</mat-label>
                                                         <input type="date" formControlName="fechaCaducidad" matInput>

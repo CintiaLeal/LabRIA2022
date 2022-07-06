@@ -102,7 +102,7 @@ export class NoticiasComponent implements OnInit {
       id: Noticia.id,
       titulo: this.editarNoticiaForm.controls["titulo"].value ? this.editarNoticiaForm.controls["titulo"].value : Noticia.titulo,
       descripcion: this.editarNoticiaForm.controls["descripcion"].value ? this.editarNoticiaForm.controls["descripcion"].value : Noticia.descripcion,
-      imagen: "Noticia.img",
+      imagen: this.base64Image ? this.base64Image : " ",
       fechaCaducidad: this.editarNoticiaForm.controls["fechaCaducidad"].value ? this.editarNoticiaForm.controls["fechaCaducidad"].value : Noticia.fechaCaducidad
     }
     this.api.editarNoticia(x).subscribe(data => {
