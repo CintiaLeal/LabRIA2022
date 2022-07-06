@@ -1,12 +1,12 @@
 <div id="grid-container">
-  <mat-card class="card" *ngFor="let x of noticias">
-    <mat-card-title>{{x.id}} {{x.titulo}}</mat-card-title>
-    <img mat-card-image src={{x.imagen}} />
-    <mat-card-content>
-      <p>
-        {{x.descripcion}}
-      </p>
-    </mat-card-content>
+    <mat-card class="card" *ngFor="let x of noticias">
+        <mat-card-title>{{x.titulo}}</mat-card-title>
+        <img mat-card-image src={{x.imagen}} />
+        <mat-card-content>
+            <p>
+                {{x.descripcion}}
+            </p>
+        </mat-card-content>
 
-  </mat-card>
+    </mat-card>
 </div>
