@@ -36,6 +36,7 @@
   }
 
   .card {
+    overflow: auto;
     height: 150px;
     width: 75px;
     margin: 0 10px 0 10px;
